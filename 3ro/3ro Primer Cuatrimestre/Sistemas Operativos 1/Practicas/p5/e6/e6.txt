@@ -1,0 +1,21 @@
+a) Como mayor diferencia, encontramos que la implementación en Erlang es más rápida, sencilla e
+intuitiva que la implementación en C. Ocupa menos de la mitad de lineas y si había algún error, su
+debugeo resultó más sencillo (aunque esto puede también tener que ver con que C no
+es muy bueno proporcionando información de los errores en tiempo de ejecución).
+Por otro lado, en Erlang, cada proceso sólo conoce la existencia del proceso a quien debe
+enviarle información. Mientras que con MPI cada proceso conoce cuántos threads están corriendo 
+el mismo programa, y son capaces de enviarle la información a cualquier otro proceso.
+En Erlang, existe una mayor libertad a la hora de decidir quién crea los procesos y cuándo lo hace. 
+
+C tiene sin embargo ciertas ventajas, como la utilización de variables globales y loops, que pueden
+en algunos casos resultar en un código más fácil de entender.
+
+En ambas implementaciones, la recepción de los mensajes es bloqueante, cosa que nos evita tener 
+que utilizar herramientas de sincronización.
+
+b) Corriendo el programa con 8 procesos, en C tomó 0.3s mientras que en Erl toma 0.0001s. (100 microsegundos)
+En C, si ocurre un erorr y un proceso muriera, fallaría la totalidad del programa, mientras que en Erlang, es 
+posible linkear múltiples procesos de manera de sortear posibles fallos en algunos de ellos, por lo cual
+un programa en Erlang tendrá la posibilidad de una mayor robustez.
+
+

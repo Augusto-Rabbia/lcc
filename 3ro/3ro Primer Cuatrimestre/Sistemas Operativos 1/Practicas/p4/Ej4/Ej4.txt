@@ -1,0 +1,53 @@
+a) 
+Estos resultados fueron obtenidos corriendo el código en Ej4.c compilado con y sin la flag -fopenmp
+Con 8 procesadores.
+
+    - N = 200
+Ts = 0,020s
+Tp = 0,017s
+
+Speedup = Ts/Tp = 0,020s / 0,017s = 1,176
+Eficiencia = Sp/p = 1,17/8 = 0.147
+
+    - N = 500
+Ts = 0,203s
+Tp = 0,070s
+
+Speedup = 0,203s / 0,070s = 2,9
+Eficiencia = 2,9/8 = 0,363
+
+    - N = 1000
+Ts = 1,575s
+Tp = 0,330s
+
+Speedup = Ts/Tp = 1,575s / 0,330s = 4,772
+Eficiencia = Sp/p = 4,772/8 = 0,60
+
+La versión paralela es más rápida.
+Comparamos el tiempo usando el comando time de bash.
+Inferimos que la relación Ts/Tp tiende a n a medida que crece el tamaño de las matrices, 
+con n la cantidad de procesadores.
+que le asignamos, aunque no es exacto ya que paralelizar también toma tiempo.
+
+
+b) Sí, cambiar el orden de los índices mejora la performance.
+En nuestros tests, resultó más eficiente el orden i-k-j.
+Esto se debe a que cambiando el orden de forma inteligente se aprovecha mejor
+la caché de los procesadores, que guardan información contigua en la memoria.
+Por lo tanto, accediendo a direcciones cercanas de un mismo arrays, se minimiza la 
+cantidad de veces que se tiene que copiar la memoria a las cachés.
+Es decir, en la memoria, los punteros de los elementos en una fila se ven de la siguiente manera:
+A[0][0] = p
+A[0][1] = p+(sizeof A[0][0])
+Por lo que el primer elemento de la fila 1 estará a un bloque de memoria del segundo, mientras que
+en el caso de las columnas, cada elemento de la columna estará a al menosN elementos del anterior:
+&A[0][0] = p
+&A[1][0] >= p+(sizeof A[0][0])*N
+
+c) Sí, de la misma manera que en el punto b, al multiplicar A*B^T, cambiar
+el orden de los índices puede mejorar el rendimiento.
+Es posible además, que dependiendo de cómo se almacene una matriz, multiplicar
+A * B^T puede ser más eficiente, pues se multiplican filas de A por filas de B (columnas de B^T),
+que, al contrario de las columnas, tienen sus datos guardados de forma contigua.
+Por lo cual al multiplicar las filas de A por las filas de B, podemos aprovechar mejor la caché
+de los procesadores.

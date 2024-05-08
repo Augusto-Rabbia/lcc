@@ -1,0 +1,5 @@
+No, no es posible implementarlo mediante un programa.
+Esto ocurre porque al ejecutar un programa mediante la Shell, este programa
+es un hijo de la Shell, por lo tanto, este sera un proceso independiente,
+que no podra interactuar con la Shell, es mas, ni siquiera sabra de la 
+existencia de esta.

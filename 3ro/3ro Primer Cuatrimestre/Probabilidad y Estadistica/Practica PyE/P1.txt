@@ -1,0 +1,80 @@
+	1)
+a-
+H0: Tomar aspirina no afecta las probabilidadesd de desarrollar cáncer de colon.
+H1: Tomar una aspirina día por medio por 20 años reduce las probabilidades de desarrollar cáncer de colon a la mitad, y los efectos
+se observan luego de 10 años.
+
+
+Si entre el grupo de los que toman y no toman aspirina la probabilidad es de 1/16, H0 cierta.
+
+A- Control
+
+B- Toman
+
+
+b-
+H0: El nuevo material no alarga la vida útil de las ollas.
+H1: El nuevo material alarga la vida útil de las ollas.
+
+Si la vida útil de las ollas hechas con el nuevo material es menor o igual a 6 años, H0 cierta.
+
+Test unilateral a la derecha.
+
+c-
+H0: La proporción de gente que dice que votará al candidato A es del 50%.
+H0: La proporción de gente que dice que votará al candidato A ya no es del 50%.
+
+Test bilateral.
+
+	2)
+a-
+H0: p_h = p_m
+H1: p_h != p_m
+
+b- Si los datos fueron estadísticamente significativos, H1 es cierta.
+
+	3)
+a- Bilateral
+
+b- (Hacer un círculo alrededor del 1 y 2) El 2 es un valor crítico, pues desde él inicia una región de rechazo.
+alpha (probabilidad de cometer un error tipo 1 (Rechazar H0 cuando es cierta)): 6/18
+beta: 8/18
+¿potencia: xd?
+
+	[[Si sacamos un 3, el p-value es de 9/18, como es mayor que alfa, entonces este resultado apuntaría a que tenemos el dado legal A]]
+	[[Si sacamos un 1, el p-value es de 3/18, menor que alfa, entonces, H1]]
+
+c- El dado está cargado, creo.
+
+	4)
+a- Test unilateral a la derecha.
+
+b- el p-value es la probabilidad de que salga este 2 o un valor más extremo. El p-value es bastante chico y es la parte derecha de la gráfica de H0.
+
+c- (sombrear desde -1 hasta la derecha del todo de H0)
+
+d- (mayor, se sombrearía más de la mitad de la gráfica de H0)
+
+e- 	alfa: sombrear desde 2.6 hasta el fin de la grafica H0
+	beta: sombrear desde 2.6 hasta el principio de H1
+Un valor de 3 sería estadísticamente significativo, pues este valor apunta al rechazo de H0 a favor de H1.
+
+	5)
+a- Unilateral a la derecha
+
+b-
+
+c- No es.
+
+d- No, pues este resultado no rechaza la H0.
+
+	6)
+
+
+
+
+
+
+
+
+

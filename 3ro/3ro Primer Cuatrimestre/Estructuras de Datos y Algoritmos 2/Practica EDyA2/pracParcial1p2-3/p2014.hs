@@ -1,0 +1,1 @@
+type MMap = [(a,b)]

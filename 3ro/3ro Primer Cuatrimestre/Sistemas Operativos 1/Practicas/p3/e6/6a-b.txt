@@ -1,0 +1,22 @@
+a) El deadlock se da cuando se liberan dos recursos y lo toman diferentes fumadores.
+Por ejemplo:
+    1. Se libera el tabaco y lo toma el fumador 1
+    2. Se libera el papel y lo toma el fumador 3
+De esta forma, ninguno de los dos podrá avanzar y ninguno podrá 
+hacer el sem_post(&otra_vez) para liberar los recursos.
+
+b) Supongamos que encontramos una forma de ordenar los recursos
+R1, R2, R3 de tal forma que los fumadores F1, F2, F3 (donde Fi
+tiene el recurso Ri, para i = 1,2,3) nunca entren en un deadlock.
+Supongamos, sin perder generalidad, que el agente libera primero R1.
+Entonces, hay dos posibilidades.
+    1. F2 toma R1        
+    2. F3 toma R1
+En el primer caso, habrá un deadlock si luego el agente libera R2, y
+en el segundo, si libera R3. Esto ocurre porque al liberar estos recursos,
+no importa cual de los otros dos fumadores lo tome, no podrán fumar, 
+pues tanto el fumador que tomó R1 como el que tome el segundo recurso 
+tendrán tan sólo uno de los dos recursos que necesitan para fumar, y
+no se podrá avanzar.
+Entonces encontramos un caso en que sin importar el orden de la toma de
+recursos, se llega a un deadlock.

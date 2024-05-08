@@ -1,0 +1,11 @@
+Dudas:
+ListSeq o directamente listas. Hacemos nosotros todas las funcs a mano o no.
+Como hacer reduce?
+Paralelización. Donde y cómo?
+Scan, se puede en listas con contracción y expansión?
+
+
+1. b) En las diapositivas. ??
+
+
+

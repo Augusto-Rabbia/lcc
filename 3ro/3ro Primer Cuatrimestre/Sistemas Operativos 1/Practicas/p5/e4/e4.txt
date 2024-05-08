@@ -1,0 +1,25 @@
+a) 
+- 200
+Con pthreads: 0.09s
+Con erl: 0.08s
+- 2000
+Con pthreads: 6.3s
+Con erl: 4.3s
+- 20000
+Con pthreads: 40s
+Con erl: 20s
+
+b) Sí, habiendo hecho un test con 2000 clientes,
+con erlang utiliza 20 Mb de memoria (Nos mostraba 48, pero el entorno sabemos utiliza 28), 
+mientras que con C usa 18 Mb (obtenido con /usr/bin/time -v ./a.out). 
+Con 20000 clientes, en Erlang, utiliza 167Mb mientras que C utiliza 168 Mb.
+No vemos una diferencia importante, pero a medida que incrementa la cantidad de clientes,
+Erlang parece crecer un poco menos velozmente en su cantidad de uso de memoria. Esto se debe
+a que Erlang es un lenguaje pensado para el multithreading en gran escala por lo que sus procesos
+están especialmente diseñados para ser livianos en términos de memoria.
+
+c) Sí, pudo hacerlo, estos fueron los resultados del time:
+- 50000
+Con pthreads: 1m5s
+Con erl: 31s
+

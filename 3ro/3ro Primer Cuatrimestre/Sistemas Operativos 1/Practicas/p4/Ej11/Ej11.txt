@@ -1,0 +1,8 @@
+11) En este programa se ejecutan múltiples procesos,
+aquel con pid == 0, el master, escribe en un buffer buf, con tamaño
+4*num_procesos previamente alocado, de manera que buf[i] = i^2, mientras 
+el resto de procesos ejecuta sleep(3). Luego escribe los contenidos 
+de este buffer en un archivo dat1 y se pone a dormir (sleep(3)).
+Cuando cada proceso despierta, incluido el master, lee 4 enteros de dat1, 
+a partir de la ubicación que le corresponda en base a su pid, e 
+imprime por pantalla los enteros que leyó.

@@ -1,0 +1,70 @@
+Notas:      Usar time (no clock). 
+            Comparar con 1 CPU y con más.
+            Probar con varios N_VISITANTES. 
+
+Pruebas con 1 CPU:
+Tiempo para N_VISITANTES = 100000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+Tiempo para N_VISITANTES = 1000000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+Tiempo para N_VISITANTES = 10000000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+Tiempo para N_VISITANTES = 100000000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+Pruebas con varios CPUs:
+Tiempo para N_VISITANTES = 100000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+Tiempo para N_VISITANTES = 1000000
+JardinNoSinc: 0.010
+JardinPete: 0.200
+JardinIncl: 0.025
+JardinMutex: 0.200
+JardinUniMolinete: 0.012
+
+Tiempo para N_VISITANTES = 10000000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+Tiempo para N_VISITANTES = 100000000
+JardinNoSinc: 0.
+JardinPete: 0.
+JardinIncl: 0.
+JardinMutex: 0.
+JardinUniMolinete: 0.
+
+
+JardinNoSinc y JardinUniMolinete son los más rápidos ya que no tienen ninguna medida de
+seguridad que reducen el rendimiento. De estos, JardinNoSinc es el más rápido porque se
+puede ejecutar en varios procesadores a la vez. JardinPete tarda más debido a las variables
+extras de control, que generan un busy waiting, y a la función mfence. Por otro lado, JardinMutex
+implementa medidas de seguridad similares, pero no hace busy waiting, y podría llegar a ser 
+marginalmente más rápido por estar implementado a nivel hardware. Finalmente, JardinIncl es un poco
+más lento que JardinNoSinc, pues

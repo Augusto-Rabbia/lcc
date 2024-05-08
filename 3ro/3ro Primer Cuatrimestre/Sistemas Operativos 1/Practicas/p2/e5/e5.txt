@@ -1,0 +1,8 @@
+a) Sí, todavía existe un race condition, lo cual puede provocar que falle.
+b) Si, pues aunque no habran problemas con la memoria entre procesadores,
+puede ocurrir que el procesador reordene las intrucciones para optimizar
+la ejecucion, lo cual puede romper el algoritmo de Peterson.
+c) No, mientras se tenga un único procesador, si se usa esta función, no habrá problema, 
+pues se incrementará directamente el valor en la dirección de memoria
+d) Si hay múltiples procesadores, estos no compartirán memoria y por lo tanto, puede ocurrir que
+    

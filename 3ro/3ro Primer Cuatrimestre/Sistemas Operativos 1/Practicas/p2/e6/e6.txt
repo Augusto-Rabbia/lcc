@@ -1,0 +1,14 @@
+Cuando hacemos optimizaciones, el codigo parece funcionar correctamente.
+La razon detras de esto es que el compilador detecta que nuestra funcion 
+entran_visitantes simplemente suma N_VISITANTES a la variable global visitantes.
+En el caso del O2 y O3, directamente suma N_VISITANTES al lugar de memoria visitantes.
+En teoría, sin embargo, esto podría fallar en raras ocasiones, pues esta escritura en la
+memoria puede generar una race condition.
+
+Sin embargo, en el caso del O1, pueden haber aun problemas, pues en esta versión,
+el compilador lee la memoria para determinar el valor de visitantes, y luego le suma
+N_VISITANTES al valor que encontró al comenzar la función, trabajando con registros, lo cual no
+genera problemas, y luego, escribe, y no suma, este valor en visitantes. 
+El mayor problema es en la lectura: Entre la primera lectura y la escritura está el loop que suma
+1 a 1 hasta N_VISITANTES, pero durante este loop, le da tiempo al otro proceso a hacer la misma
+lectura, por lo que ambos procesos escribirán el mismo valor al finalizar.

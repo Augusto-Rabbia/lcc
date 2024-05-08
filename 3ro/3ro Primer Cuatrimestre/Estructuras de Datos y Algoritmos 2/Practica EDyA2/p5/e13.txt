@@ -1,0 +1,35 @@
+    13)
+type Rank = Int
+data Heap a = E | N Rank a (Heap a) (Heap a)
+
+merge :: Ord a -> Heap a -> Heap a -> Heap a
+merge h1 E = h1
+merge E h2 = h2
+merge h1@(N _ x a1 b1) h2@(N _ y a2 b2) =
+                                        if x <= y then (makeH x a1 (merge b1 h2))
+                                        else (makeH y a2 (merge h1 b2))
+
+makeH x a b = if (rank a) > (rank b) then (N (rank b + 1) x a b)
+              else (N (rank a + 1) x b a)
+
+merge de leftist heaps devuelve un leftist heap de rango mayor o igual.
+CB: Si l1 = E =>
+    merge E l2 = l2 leftist heap por hip
+
+PI: (HI) Sup que (merge b1 l2) es un leftist heap. (l2 lh por hip)
+merge l1@(N n x a1 b1) l2@(N n y a2 b2)             =
+Sabemos que: x <= (val a1 y val b1)
+             (rank bi) <= (rank ai)
+             (rank bi) + 1 = (rank li) 
+             (rank )
+
+Tenemos dos casos:
+    x <= y: Entonces tenemos            = {merge.2 (x <= y)}
+    makeH x a1 (merge b1 l2)
+
+
+    y < x (rank l2 > rank l1):                              =
+    makeH y a2 (merge l1 b2)            = {makeH.2 (x > y)}
+    ((rank a2) > y < (rank l1)) => (N (rank (merge l1 b2))+1 y a2 (merge l1 b2))
+
+

@@ -1,0 +1,1 @@
+Los ejercicios con variables de condición no están bien hechos (no tomamos locks y no les ponemos while)

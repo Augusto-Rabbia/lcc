@@ -1,0 +1,65 @@
+    8)
+        a-
+tad Arbol (A: Set) where
+    import Int
+    Hoja    :: Arbol A
+    Nodo    :: A -> Arbol A -> Arbol A -> Arbol A
+    size    :: Arbol A -> Int        (a-)
+    mirror  :: Arbol A -> Arbol A    (c-)          
+
+size Hoja = 1
+size (Nodo a l r) = 1 + (size l) + (size r)
+
+        b-
+CB: size Hoja ={size.1}= 1 = 2*0+1
+PI: (HI) P.t. t hecho en n o menos pasos vale size t = 2k+1 para algún k e N
+size (Nodo a t1 t2)           = {size.2}
+1 + (size t1) + (size t2)   = (HI)
+1 + (2k+1) + (2h+1) = 2(k+h+1)+1
+
+        c-
+mirror Hoja = Hoja
+mirror (Nodo a l r) = (Nodo a (mirror r) (mirror r))
+        d-
+CB: mirror mirror Hoja ={mirror.1}= mirror Hoja ={mirror.1}= Hoja = id Hoja
+PI: (HI) mirror o mirror t = id t para arboles hechos en menos de n pasos
+Sea (Node a l r) hecho en n+1 pasos
+mirror o mirror (Node a l r)                    = {mirror.2}
+mirror (Node a (mirror l) (mirror r))           = {mirror.2}
+(Node a (mirror o mirror l) (mirror o mirror r))= (HI)
+(Node a (id l) (id r))                          = {id}
+id (Node a l r)
+
+        e-
+
+
+
+    9)
+        a-
+
+        b-
+
+        c-
+
+    10)
+CB: map f flatten (Leaf x) = map f [x] = [f x] = flatten (Leaf (f x)) = flatten (mapTree f (Leaf x)) 
+PI: (HI) map f (flatten l) = flatten (mapTree f l) y para r tmb.
+map f (flatten (Node a l r))                                = {flatten.2}
+map f ([a] ++ (flatten l) ++ (flatten r))                   = {map}
+[f a] ++ (map f (flatten l)) ++ (map f (flatten r))         = (HI)
+[f a] ++ (flatten (mapTree f l)) ++ (flatten (mapTree f r)) = {flatten.2}
+flatten (Node (f a) (mapTree f l) (mapTree f r))            = {mapTree.2}
+flatten (mapTree (Node a l r))
+
+    11)
+CB: join o map singleton [] = join [] = [] = id xss
+PI: (HI) join o map singleton xss = id xss = xss
+join (map singleton (xs:xss))       = {map? singleton}
+join ([xs]:(map singleton xss))     = {join.2}
+[xs] ++ (join o map singleton xss)  = (HI)
+[xs] ++ xss                         = {++}
+(xs:xss)
+
+    12)
+
+

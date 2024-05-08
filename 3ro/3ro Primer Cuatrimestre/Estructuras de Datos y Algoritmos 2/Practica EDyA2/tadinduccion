@@ -1,0 +1,38 @@
+Ej1: CB: reverse ([] ++ ys)      = *1
+reverse ys                  = *2
+(reverse ys) ++ []          = def reverse
+(reverse ys) ++ (reverse [])
+
+PI: (HI) reverse (xs ++ ys) = (reverse ys) ++ (reverse xs)
+
+reverse ((x:xs) ++ ys)                  = def reverse
+(reverse (xs ++ ys)) ++ [x]             = (HI)
+((reverse ys) ++ (reverse xs)) ++ [x]   = *3
+(reverse ys) ++ ((reverse xs) ++ [x])   = def reverse
+(reverse ys) ++ (reverse (x:xs))
+
+
+*1) xs = [] ++ xs por def
+
+*2) xs = xs ++ []
+CB: [] ++ [] = [] por def
+
+PI: (HI) xs ++ [] = xs
+
+(x:xs) ++ []    = def ++
+x:(xs++[])      = (HI)
+x:xs
+
+*3) (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
+
+
+Def ++:
+[] ++ ys = ys
+(x:xs) ++ ys = x:(xs ++ ys)
+
+
+Ej2
+Si vale P(Zero) y, si P(Nat) entonces P(Succ Nat), P vale para todo Nat.
+
+
+

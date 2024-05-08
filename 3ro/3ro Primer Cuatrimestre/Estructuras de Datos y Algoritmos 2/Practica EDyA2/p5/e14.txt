@@ -1,0 +1,7 @@
+Sea P una propiedad,
+CB: si vale P(Zero) 
+y
+PI: Si vale que:
+    1. Si vale P(f) => vale P(One f) 
+    2. Sea g :: Bool -> F, si vale P(g True) y P(g False) => vale P(Two g)
+Entonces, P.t. x :: F, P(x).

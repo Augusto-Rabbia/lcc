@@ -1,0 +1,83 @@
+Nota: no poner los _ en el ej 1 y 2 xd
+1)  a- Especificación algebraica
+null nil = True
+null cons _ l = False
+head cons x _ = x
+tail cons _ l = l
+
+    b- Especificación con secuencias como modelo:
+Definimos los constructores como:
+nil = {}
+cons x {x1,...,xn} = {x,x1,...,xn}
+Luego, 
+null {x1,...,xn} = True     si n = 0
+null {x1,...,xn} = False    sino
+head {x1,...,xn} = x1
+tail {x1,x2,...,xn} = {x1,x2,...,xn}
+    c- 
+inL x nil = False
+inL x (cons y l) = if x == y then True else inL x L
+    d-
+elim x nil = nil
+elim x (cons y l) = if x == y then l else (cons y (elim x l))
+
+2) TAD pilas.
+TAD Pila (A:Set) where
+    import Bool
+    empty   : Pila A
+    push    : A-> Pila A -> Pila A
+    isEmpty : Pila A -> Bool
+    top     : Pila A -> A
+    pop     : Pila A -> Pila A
+
+Definimos los constructores:
+empty: Construye una pila vacía
+push: Añade un elemento a la pila
+    Luego, la especificación algebraica es:
+isEmpty empty       = True
+isEmpty (push _ _)  = False
+top (push x _)      = x
+pop (push _ l)      = l 
+
+3)
+borrar x vacio          = vacio
+borrar x (insertar y c) = if x == y then (insertar c) else (insertar y (borrar x c))
+esVacio vacio           = True
+esVacio (insertar x c)  = False
+union vacio c           = c
+union (insertar x c1) c = union c1 (insertar x c)
+interseccion vacio c    = vacio
+interseccion (insertar x c1) (insertar y c2) = if x == y then (insertar interseccion c1 c2) else interseccion c1 (insertar y c2)
+resta c vacio = c
+resta (insertar x c1) (insertar y c2) = if x == y then (resta c1 c2) else (insertar x (resta c1 c2))
+
+Lo que pasaria si insertamos esta funcion choose es que podría tener muchos diferentes
+valore de retorno
+
+    4)
+Primero, definimos el TAD PriQ:
+tad PriQ (A:Set) (B: Ordered Set) where
+    import Bool
+    vacia   : PriQ A
+    poner   : PriQ A -> A -> B -> PriQ A
+    primero : PriQ A -> A
+    sacar   : PriQ A -> A -> PriQ A
+    esVacia : PriQ A -> Bool
+    union   : PriQ A -> PriQ A -> PriQ A
+Ahora, podemos dar la especificación algebraica del TAD:
+primero (poner q x b)               = x
+sacar (poner q x)                   = q
+esVacia vacia                       = True
+esVacia (poner q x b)               = False
+union vacia q                       = q
+union q vacia                       = q
+union (poner q1 x b) (poner q2 y b2) = (union q1 (poner (poner q y m) x b))
+
+    5)
+Especificación algebraica de BalT:
+size empty = 0
+size (join l mA r) = 1 + (size l) + (size r)
+expose empty = Nothing
+expose (join l mA r) = Just (l, mA, r) 
+
+

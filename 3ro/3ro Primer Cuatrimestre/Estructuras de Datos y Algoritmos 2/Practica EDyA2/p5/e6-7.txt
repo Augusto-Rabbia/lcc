@@ -1,0 +1,24 @@
+    6)
+CB:
+(uncurry zip) o unzip [] = {unzip.1}
+(uncurry zip) ([],[])    = {uncurry zip.1}
+zip [] []                = {zip.1}
+[]
+PI: (HI) (uncurry zip) o unzip ps = id ps = ps
+(uncurry zip) o unzip ((x,y):ps)                   = {unzip.2}
+(uncurry zip) (x:xs,y:ys) where (xs,ys) = unzip ps = {uncurry zip.1}
+zip (x:xs,y:ys) where (xs,ys) = unzip ps           = {zip.3}
+(x,y):(zip xs ys) where (xs,ys) = unzip ps         = {where?}
+(x,y):(zip o unzip ps)                             = {uncurry zip.1}
+(x,y):((uncurry zip) o unzip ps)                   = (HI)
+(x,y):ps
+
+    7)
+CB: sum [] 1= 0 <= 0 * 0 2= length [] * maxl []     1{sum.1}, 2{maxl.1 y length.1}
+PI: (HI) sum xs <= length xs * maxl xs
+sum (x:xs)                                          = {sum.2}
+x + sum xs                                          <= (HI)
+x + length xs * maxl xs                             <= {max}
+(x `max` maxl xs) + length xs * (x `max` maxl xs)   =
+(1 + length xs) * (x `max` maxl xs)                 = {length.1, maxl.2}
+length (x:xs) * maxl (x:xs)

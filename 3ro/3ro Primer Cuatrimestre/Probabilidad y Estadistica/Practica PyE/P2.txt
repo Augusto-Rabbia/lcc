@@ -1,0 +1,33 @@
+	1)
+a- En este caso, la edad es una variable cuantitativa discreta.
+
+b- ages <- c(22, 22, 23, 24, 25, 25, 26, 27, 28, 29, 29, 29, 29, 29, 31, 31, 32, 33, 34, 35, 35, 35, 36, 38, 39, 39, 42, 42, 44, 44, 45, 45, 45, 47, 48, 52, 59, 66, 67, 69, 69)
+
+c1- sample_size <- length(ages)
+
+c2- mean(edades)  # Media
+median(edades)  # Mediana
+Mode(edades)  # Moda
+quantile(edades)  # Cuartiles
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+c3- range(edades)  # Rango
+IQR(edades)  # Rango intercuartílico
+sd(edades)  # Desviación estándar
+var(edades)  # Variancia
+
+c4- quantile(edades, c(0.1, 0.5))  # Percentil 10 y 50
+
+c5- summary(edades)  # Mínimo, máximo y cuartiles
+
+c6- boxplot(edades, main = "Diagrama de caja de edades", ylab = "Edad")
+
+c7- stem(edades)
+
+c8- hist(edades, main = "Histograma de edades", xlab = "Edad", ylab = "Frecuencia")
+
+d-

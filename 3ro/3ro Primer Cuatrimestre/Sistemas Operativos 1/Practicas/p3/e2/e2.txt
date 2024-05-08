@@ -1,0 +1,32 @@
+a-
+Puede entrar en un deadlock si ocurriera que cada proceso entra en
+tomar_tenedores y hace el mutex del tenedor a su derecha.
+Esto es, si el filosofo 0 toma el tenedor N_FILOSOFOS-1, y se detiene
+su ejecución, dejando entrar al filósofo 1, que toma N_FILOSOFOS-2, y se
+detiene su ejecución, y así, uno por uno los filósofos no entran hasta que
+el filósofo N_FILOSOFOS-1 toma el tenedor 0. Luego, ninguno de los procesos
+podrá tomar el tenedor a su izquierda, pues están todos ocupados.
+Esto representaría el caso en que cada filósofo tome el tenedor a su derecha,
+y se quede esperando a que el que está a su izquierda quede liberado, pero
+no queda ningún tenedor para que alguno de los filósofos lo pueda tomar.
+
+b-
+Esta solución funciona porque de esta forma, supongamos que el filósofo
+zurdo tiene un tenedor a su izquierda. Entonces, hay dos posibilidades,
+    1. El tenedor a su derecha está libre: En este caso, puede comer y no hay deadlock.
+    2. El tenedor a su derecha está ocupado: Pero esto significa que el filósofo
+a su derecha tomó ambos tenedores y está comiendo, pues este filósofo es diestro,
+y debió tomar primero el tenedor a su derecha y sólo luego el que tiene a su izquierda.
+Por lo tanto, tampoco habrá deadlock.
+
+d-
+Sí, funciona, pues si se llegara a la situación del deadlock, eventualmente
+algún filósofo dejaría su tenedor y el que está a su derecha podría tomarlo
+antes de que el primero lo haga de nuevo, acabando con el deadlock.
+Sin embargo, esto no es eficiente, pues puede ocurrir que dos filósofos
+estén constantemente tomando y dejando sus tenedores, bloqueándose el uno
+al otro. 
+Además para hacer esta implementación, lockeamos y soltamos un mutex repetidas
+veces antes de que un filósofo pueda comer, lo cual puede llevar a un 
+pseudo-busy-waiting en el que un filósofo toma y suelta su tenedor mientras
+espera a que el que está a su izquierda lo deje libre.

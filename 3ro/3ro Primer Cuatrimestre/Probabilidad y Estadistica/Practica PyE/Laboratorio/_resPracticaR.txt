@@ -1,0 +1,19 @@
+	1)
+a- Tamaño de la muestra: 59
+Variables: 4
+Tipo de las variables: 
+	Edad y num de visitas: Cuantitativas
+	Sexo y tipo de síntoma: Cualitativas
+Las columnas están separadas por un tab ("\t").
+
+b- En _PracR. Para ver los args, al manual. El valor de retorno es de la clase "data.frame"
+
+c- attach() permite acceder a la información de las variables utilizando únicamente su nombre (en vez de hacer dataframe_name$var_name)
+
+	2)
+a- XD
+b- 
+class(Edad)
+class(Sexo)
+class(Signo)
+Class(Núm.de.visitas)

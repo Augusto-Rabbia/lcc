@@ -1,0 +1,10 @@
+b) 
+Puede llevar a starvation de los escritores porque
+si hay muchos lectores, sin importar la cantidad de
+escritores, los lectores estarán constantemente entrando
+y sumando nLectores, mientras que los escritores esperan a 
+que ya no quede ningún escritor, cosa que no está garantizada, 
+ya que es posible que nLectores nunca llegue a 0.
+Esto es porque los lectores pueden entrar sin restricciones,
+y mientras están leyendo, le dan tiempo a más lectores a
+entrar.

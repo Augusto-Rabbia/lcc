@@ -1,0 +1,86 @@
+    1)
+Implementamos Secuencias como BTrees:
+data BTree a = Empty | Node Int (BTree a) a (BTree a)
+(Cada nodo tendrá el tamaño del árbol en cada nodo)
+
+fun aux:
+size :: BTree a -> Int
+size :: Empty = 0
+size :: (BTree sz _ _ _) = sz
+
+nth :: BTree a -> Int -> a
+nth (Node _ l a r) n | n < ord = nth l n
+                     | n == ord = a
+                     | n > ord = nth r n-ord
+                        where ord = (size l) + 1
+
+W_nth(n) = XD?
+___________________________________________________________________
+cons :: a -> BTree -> BTree a
+cons x Empty = (Node 1 Empty x Empty)
+cons x (Node n l _ _) = (Node n+1 (cons x l) _ _)
+
+W_cons(h) = W_cons(h-1) + c     ∈ O(2^n)
+S_cons(h) = S_cons(h-1) + c     ∈ O(2^n)
+
+___________________________________________________________________
+tabulate :: (Int -> a) -> Int -> BTree a
+tabulate f n = 
+
+W_tabulate(h) = XD?
+
+___________________________________________________________________
+map :: (a -> b) -> BTree a -> BTree b
+map f Empty = Empty
+map f (Node n l x r) = (Node n (map f l) (f x) (map f r))
+
+Para calcular el costo, veamos cual seria si f e O(1):
+W_map(h) = 2*W_map(h-1) + c     e O(2^h)
+W_map(h) = S_map(h-1) + c       e O(h)
+
+Pero si f puede tener cualquier costo:
+W(map f (N n l x r)) = a + W(map f l) + W(map f r) + W(f x)    ∈ O(∑ W(f y)), con y ∈ (N n l x r) 
+
+Demuestro que ∃c ∈ ℝ+/ ∀t :: BTree, 0 ≤ W (map f t) ≤ c* (∑  W (f y))
+                                                     y ∈ t
+D/
+paso inductivo: t = N l x r
+HI1: 0 ≤ W (map f l) ≤  c. (∑ W (f y))
+                              y ∈ l
+HI2:  0 ≤ W (map f r) ≤  c. (∑ W (f y))
+                              y ∈ r
+
+W (map f (N l x r))                                             = {def. W}
+W (map f l) + W(map f r)+ W(f x) + a                        <= {HI1 y HI2}
+c*(∑ W(f y)) + c*(∑ W(f y)) + W(f x) + a                    <= {si c ≥ 2 }
+  y ∈ r         y ∈ l
+
+c*(∑ W (f y)) + c*(∑ W (f y)) + c/2 * W(f x) + a            <= {si c ≥ 2a/W(f x)}
+ y ∈ r              y ∈ l
+
+c*(∑ W (f y)) + c*(∑ W (f y)) + c/2 * W(f x) + c/2 * W(f x)  
+ y ∈ r              y ∈ l     
+                                                            = 
+c*(∑ W (f y))   
+ y ∈ (N l x r)
+  
+-- Profundidad
+S(map f t@(N l x r)) = max(S(map f l), S(map f r), S(f x)) + c                                          
+                     ≤ ... =  max S(f x) + c.h                    ∈ O(h) + O(max S(f x))
+                             x ∈ t                                          x ∈ t
+
+
+
+___________________________________________________________________
+take :: Int -> BTree a -> BTree a
+take n (N n l x r) | n < ord = (take n l)
+                   | n == ord = (Node ord l x Empty)
+                        where ord = (size l) + 1
+
+
+___________________________________________________________________
+drop :: Int -> BTree -> BTree a
+drop n (N n l x r) | n < ord = (N (n-ord+(size leftdropped)) leftdropped x r)
+                   | n == ord = (Node (n-(ord-1)) Empty x r)
+                        where ord = (size l) + 1
+                              leftdropped = (drop n l)

@@ -1,0 +1,17 @@
+
+
+
+
+--    Ej 7)
+sum xs <= length xs ∗ maxl xs
+D/
+CB: sum [] ={sum.1}= 0 = 0*0 ={length.1,maxl.1}= length [] ∗ maxl []
+
+PI: (HI) sum xs <= len xs * maxl xs
+sum (x:xs)                              = {sum.2}
+x + sum xs                              <= (HI)
+x + (len xs * maxl xs)                  <= {max, len xs >= 0 para todo xs}
+(x `max` (maxl xs)) + (len xs * (x `max` (maxl xs)))    = {maxl.2}
+(maxl (x:xs)) + len xs * maxl (x:xs)    =
+(1+len xs) * maxl (x:xs)                = {len.2}
+len (x:xs) * maxl (x:xs)        
