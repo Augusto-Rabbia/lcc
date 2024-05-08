@@ -1,0 +1,16 @@
+DIMENSION
+9
+COMPLEJIDAD
+3
+PALABRAS
+marmotear
+zeina
+cincel
+troquilo
+emplomado
+augusto
+pancho
+sandwich
+empanada
+alas
+pan

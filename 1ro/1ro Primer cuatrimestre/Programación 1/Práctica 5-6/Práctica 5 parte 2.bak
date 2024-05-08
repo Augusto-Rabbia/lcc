@@ -1,0 +1,274 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |Práctica 5|) (read-case-sensitive #t) (teachpacks ((lib "image.rkt" "teachpack" "2htdp") (lib "universe.rkt" "teachpack" "2htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "image.rkt" "teachpack" "2htdp") (lib "universe.rkt" "teachpack" "2htdp")) #f)))
+;Práctica 5
+
+;-------------------------------------------------------------------------------------------------------------
+;1 Programando con listas
+;-----------
+;Ejercicio 1
+
+(define (has-marcos? l)
+  (cond [(empty? l) #false]
+        [(equal? (first l) "Marcos") #true]
+        [else (has-marcos? (rest l))]
+        ))
+(check-expect (has-marcos? (cons "Eugenia"
+                                 (cons "Lucía"
+                                       (cons "Dante"
+                                             (cons "Federico"
+                                                   (cons "Marcos"
+                                                         (cons "Gabina"
+                                                               (cons "Laura"
+                                                                     (cons "Pamela" '()))))))))) #true)
+
+(define (has-marcos?2 l)
+  (if (member? "Marcos" l) #true #false))
+
+(check-expect (has-marcos?2 (cons "Eugenia"
+                                  (cons "Lucía"
+                                        (cons "Dante"
+                                              (cons "Federico"
+                                                    (cons "Marcos"
+                                                          (cons "Gabina"
+                                                                (cons "Laura"
+                                                                      (cons "Pamela" '()))))))))) #true)
+
+
+;-----------
+;Ejercicio 9
+
+
+(define (todos-verdaderos l)
+  (if (member? #false l) #false #true))
+
+(check-expect (todos-verdaderos (cons #true (cons #true (cons #true '())))) #true)
+(check-expect (todos-verdaderos (cons #true (cons #false (cons #true '())))) #false)
+
+
+(define (uno-verdadero l)
+  (if (member? #true l) #true #false))
+
+(check-expect (uno-verdadero (cons #true (cons #false (cons #false '())))) #true)
+(check-expect (uno-verdadero (cons #false (cons #false (cons #false '())))) #false)
+
+
+;-----------
+;Ejercicio 10
+
+
+(define (cant-elementos l)
+  (cond [(empty? l) 0]
+        [(cons? l) (+ 1 (cant-elementos (rest l)))]))
+
+(check-expect (cant-elementos (cons #true (cons #false (cons #false '())))) 3)
+(check-expect (cant-elementos (cons #false '())) 1)
+
+;-----------
+;Ejercicio 11
+
+(define (sum-elementos l)
+  (cond [(empty? l) 0]
+        [(cons? l) (+ (first l) (sum-elementos (rest l)))])) 
+
+(check-expect (sum-elementos (cons 4 (cons 6 (cons 5 '())))) 15)
+
+
+(define (promedio l)
+  (/ (sum-elementos l) (cant-elementos l)))
+
+(check-expect (promedio (cons 4 (cons 6 (cons 5 '())))) 5)
+(check-expect (promedio (cons 0 (cons 0 (cons 0 '())))) 0)
+
+
+(check-expect (promedio (cons 15 (cons 29 (cons 1 '())))) 15)
+
+
+;-------------------------------------------------------------------------------------------------------------
+; 2 Clasificando elementos de una lista
+;-----------
+;Ejercicio 12
+
+(define (pares l)
+  (cond [(empty? l) '()]
+        [(cons? l) (if (= (remainder (first l) 2) 0) (cons (first l) (pares (rest l)))
+                       (pares (rest l)))]
+        ))
+
+(check-expect (pares (list 3 5 1 3 2)) (list 2))
+(check-expect (pares (list 4 6 3 7 5 0)) (list 4 6 0))
+
+;-----------
+;Ejercicio 13
+
+(define (cortas l)
+  (cond [(empty? l) '()]
+        [(cons? l) (if (< (string-length (first l)) 5)
+                       (cons (first l) (cortas (rest l)))
+                       (cortas (rest l)))]
+        ))
+(check-expect (cortas (list "Lista" "de" "palabras" "sin" "sentido")) (list "de" "sin"))
+
+;-----------
+;Ejercicio 14
+
+(define (mayores l n)
+  (cond [(empty? l) '()]
+        [(cons? l) (if (> (first l) n)
+                       (cons (first l) (mayores (rest l) n))
+                       (mayores (rest l) n))]
+        ))
+
+(check-expect (mayores (list 1 5 2 9 60 0 3 6) 5) (list 9 60 6))
+
+
+;-----------
+;Ejercicio 15
+
+(define MAX 5) ;Distancia máxima del origen
+
+(define (cerca l)
+  (cond [(empty? l) '()]
+        [(cons? l) (if (> (sqrt (+ (sqr (posn-x (first l))) (sqr (posn-y (first l))))) MAX)
+                       (cerca (rest l))
+                       (cons (first l) (cerca (rest l))))]
+        ))
+(check-expect (cerca (list (make-posn 3 5) (make-posn 1 2) (make-posn 0 1) (make-posn 5 6))) (list (make-posn 1 2) (make-posn 0 1)))
+
+;-----------
+;Ejercicio 17
+
+(define (eliminar l n)
+  (cond [(empty? l) '()]
+        [(cons? l) (if (= (first l) n)
+                       (eliminar (rest l) n)
+                       (cons (first l) (eliminar (rest l) n)))]
+        ))
+
+(check-expect (eliminar (list 1 2 3 2 7 6) 2) (list 1 3 7 6))
+(check-expect (eliminar (list 1 2 3 2 7 6) 0) (list 1 2 3 2 7 6))
+
+;-------------------------------------------------------------------------------------------------------------
+; 3 Aplicando transformaciones a cada elemento de una lista
+;-----------
+;Ejercicio 18
+
+(define (raices l)
+  (cond [(empty? l) '()]
+        [(cons? l) (cons (sqrt (first l)) (raices (rest l)))]))
+
+(check-expect (raices (list 9 16 4)) (list 3 4 2))
+
+;-----------
+;Ejercicio 19
+
+(define (distancias l)
+  (cond [(empty? l) '()]
+        [(cons? l) (cons (sqrt (+ (sqr (posn-x (first l))) (sqr (posn-y (first l))))) (distancias (rest l)))])) 
+
+(check-expect (distancias (list (make-posn 3 4) (make-posn 0 4) (make-posn 12 5)))  (list 5 4 13))
+
+;-----------
+;Ejercicio 20
+
+(define (anchos l)
+  (cond [(empty? l) '()]
+        [(cons? l) (cons (image-width (first l)) (anchos (rest l)))]))
+
+(check-expect (anchos (list (circle 30 "solid" "red") (rectangle 10 30 "outline" "blue"))) (list 60 10))
+
+;-----------
+;Ejercicio 21
+
+(define (sgn2 x) (cond [(< x 0) -1]
+                       [(= x 0) 0]
+                       [(> x 0) 1]))
+
+(define (signos l)
+  (cond [(empty? l) '()]
+        [(cons? l) (cons (sgn2 (first l)) (signos (rest l)))]))
+
+(check-expect (signos (list 45 32 -23 0 12)) (list 1 1 -1 0 1))
+
+;-----------
+;Ejercicio 23
+
+(define (longitudes l)
+  (cond [(empty? l) '()]
+        [(cons? l) (cons (string-length (first l)) (longitudes (rest l)))]))
+
+(check-expect (longitudes (list "hola" "cómo" "estás?")) (list 4 4 6))
+
+;-----------
+;Ejercicio 24
+
+(define (conversionFC F)
+  (* (/ 5 9) (- F 32)))
+
+(define (convertirFC l)
+  (cond [(empty? l) '()]
+        [(cons? l) (cons (conversionFC (first l)) (convertirFC (rest l)))]))
+
+(check-expect (convertirFC (list 32 50 104)) (list 0 10 40))
+
+;-------------------------------------------------------------------------------------------------------------
+; 4 Operando con los elementos de una lista
+;-----------
+;Ejercicio 24
+
+(define (prod l)
+  (cond [(empty? l) 1]
+        [(cons? l) (* (first l) (prod (rest l)))]))
+
+(check-expect (prod (list 1 2 3 4 5)) 120)
+
+
+;-----------
+;Ejercicio 25
+
+(define (pegar l)
+  (cond [(empty? l) ""]
+        [(cons? l) (string-append (first l) (pegar (rest l)))]))
+
+(check-expect (pegar (list "Las " "lis" "tas " "son " "complicadas" ".")) "Las listas son complicadas.")
+
+;-----------
+;Ejercicio 26
+
+(define (maximo l)
+  (cond [(empty? l) -99999999999999]
+        [(cons? l) (max (first l) (maximo (rest l)))]))
+
+(check-expect (maximo (list 23 543 325 0 75)) 543)
+
+;-----------
+;Ejercicio 27
+
+(define (distOrigen p)
+  (sqrt (+ (sqr (posn-x p)) (sqr (posn-y p)))))
+
+(define (sumdist l)
+  (cond [(empty? l) 0]
+        [(cons? l) (+ (distOrigen (first l)) (sumdist (rest l)))]))
+
+(check-expect (sumdist (list (make-posn 3 4) (make-posn 0 4) (make-posn 12 5))) 22)
+
+;-----------
+;Ejercicio 28
+
+(define (sumcuad l)
+  (cond [(empty? l) 0]
+        [(cons? l) (+ (sqr (first l)) (sumcuad (rest l)))]))
+
+(check-expect (sumcuad (list 1 2 3)) 14)
+
+
+
+
+
+
+
+
+
+
+

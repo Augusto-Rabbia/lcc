@@ -1,0 +1,10 @@
+DIMENSION
+10
+COMPLEJIDAD
+3
+PALABRAS
+salomonico
+maniaco
+biografo
+lamentable
+fontana
