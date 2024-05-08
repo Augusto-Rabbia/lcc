@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "ej4funcs.h": "c",
+        "typeinfo": "c",
+        "assert.h": "c"
+    }
+}

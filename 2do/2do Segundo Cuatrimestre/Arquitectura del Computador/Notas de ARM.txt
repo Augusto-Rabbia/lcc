@@ -1,0 +1,184 @@
+Notas de donde estudio:
+
+Registros:
+r0-r3 = a1-a4	argumentos, Caller saved
+r4-r11 = v1-v7 	variables, Callee saved
+r12				variable temporal, instruction pointer (no es lo mismo que el rip), Caller Saved
+r13				Stack Pointer
+r14	= lr		Link Register
+r15 = pc		Program Counter
+
+CPSR 			Current Program Status Register. Contiene el estado del programa, con las banderas
+La mayoría de operaciones no modifican el CPSR, a diferencia de x86_64. Las que lo modifican son las de comparación.
+Puede agregarse una S en varias instrucciones para que modifiquen las banderas.
+
+
+ARM es bi-endian:
+SETEND BE/LE		Setea el bit 9 del CPSR a 1/0, determinando el endianness.
+
+Todas las instrucciones en ARM Developer Suite Assembler Guide, Chapter 4: ARM Instruction Reference
+
+Instrucciones de Movimiento:	INST{cond} admitido
+MOV <dest>, <origen>				Copiar valor de origen (valor inmediato o registro) a dest
+MVN <dest>, <origen>				NEGATED: Copia el valor negado del REGISTRO de origen, útil para copiar valores que no entran en mov
+MOVW <dest>, <origen>				WIDE: Copia una CONSTANTE de 16 bits al registro, dejando en 0 los valores de la parte superior.
+MOVT <dest>, <origen>				TOP: Copia una CONSTANTE de 16 bits al tope del registro, sin modificar la parte inferior.
+
+Instrucciones aritméticas:	INST{cond} admitido
+ADD	<dest>, <reg1>, <reg2>			Suma r1+r2
+ADC	<dest>, <reg1>, <reg2>			Suma con acarreo
+SUB	<dest>, <reg1>, <reg2>			Resta r1-r2
+SBC	<dest>, <reg1>, <reg2>			Resta con acarreo
+RSB	<dest>, <reg1>, <reg2>			resta inversa r2-r1
+MUL	<dest>, <reg1>, <reg2>			Multiplicación
+UMULL <d1>, <d2>, <reg1>, <reg2>	Multiplicación donde en d1 se guardan los bits menos significativos y d2 los más.
+				<<<recordar que no modifican CPSR si no se les agrega S al final>>>
+
+Instrucciones lógicas: 	INST{cond} admitido
+AND <dest>, <or1>, <or2>
+ORR <dest>, <or1>, <or2>
+BIC <dest>, <or1>, <or2>			Not, creo
+EOR <dest>, <or1>, <or2>
+
+Instrucciones de comparación: (Sólo modifican el CPSR) INST{cond} admitido
+--- Modifican las banderas N, Z, C y V ---
+CMP <dest>, <origen>				Compara los valores
+CMN <dest>, <origen>				Comparación negativa, es la inversa de CMP
+--- Modifican las banderas N y Z ---
+TST <dest>, <origen>				dest AND origen. 
+TEQ <dest>, <origen>				Hace dest OR origen. Testea si son iguales o no.
+
+Instrucciones de ramificación: 	INST{cond} admitido
+Branch/with Link/and Exchange
+B <label>							Salta a la instruccion label. r15 = label. Es un salto sin retorno.
+BL <label>							r14 = prox instrucción, r15 = label. Es un salto que permite volver en el futuro.
+									Para volver luego de un BL, se podría hacer 
+									MOV pc, lr. 
+									Sin embargo, es más seguro usar
+									BX lr
+									En un código que mezcle THUMB y ARM.
+BX Rm								r15 = label y cambia a modo THUMB si Rm[0] = 1 y a modo ARM si Rm[0] = 0.
+BLX <label>
+
+Ejecución condicional:
+Se puede dar un sufijo a ciertas instrucciones para que se ejecuten sólo si algunas banderas están prendidas. Si no lo están, se considera un NOP.
+	Por banderas:
+VS/VC								Con/sin V flag (overflow)
+	Comparaciones generales:
+EQ/NE								igual/no igual
+MI									negativo
+PL 									positivo o cero
+	Comparaciones con signo:
+GE									greaterequal
+LE									less or equal
+GT									greater than
+LT									less than
+	Comparaciones sin signo
+HS/CS								mayorigual sin signo  /  Carry Activo (equivalentes)
+LS									menorigual sin signo
+HI									mayor sin signo
+LO/CC								menor sin signo  /  Carry inactivo (equivalentes)
+
+AL									SIEMPRE VÁLIDO
+
+Barrel Shifter:
+LSL									Logical Shift Left. Corre los bits a la izquierda, rellenando con 0s.
+LSR									Logical Shift Right. Corre los bits a la derecha, rellenando con 0s.
+ASR									Arithmetic Shift Right. Corre los bits a la derecha, rellenando con el valor del bit más significativo.
+ROR									Rotate Right. Rota los bits.
+RRX									Rotate Right Extended. Rota 33 bits: los 32 bits de la palabra, más el bit de la carry flag.
+
+
+
+Instrucciones de carga y guardado en memoria: INST{cond} admitido
+La dirección de la memoria donde se cargue debe ser divisible por el tamaño de la instrucción.
+LDR{cond}{size}	<reg>, <dir>		Load Register
+STR{cond}{size} <reg>, <dir>		Store Register
+{size} = B/SB (Byte/Signed Byte), H/SH(Half Word/Signed Half Word)
+
+<dir> = [reg1]										la dirección es reg1
+		[reg1, reg2/#const](!)						la dirección es arg1+arg2. Si se agrega !, se escribe arg1+arg2 en arg1.
+		[reg1], reg2/#const							la dirección es arg1, pero luego se escribe arg1+arg2 en arg1.
+		[reg1, reg2, <barrel shifter> #const](!)	la dirección es arg1+(arg2 <</>>/otro corrimiento const)
+		etiqueta									
+
+
+LDM{mode} <reg>, <reg list>			Load Multiple. Guarda los datos de la dirección <reg> en la lista de registros (tantos como registros hayan en la lista)
+STM{mode} <reg>(!), <reg list>		Store Multiple. Guarda los datos de la lista de registros en la dirección <reg>
+
+Modos:						Para STM:	Para LDM:
+FD (Full descending) 			DB 			IA
+FA (Full ascending) 			IB 			DA
+ED (Empty descending) 			DA 			IB
+EA (Empty ascending) 			IA 			DB
+(Dec before, Inc before, Dec after, Inc after)
+
+El modo más normal es FD. Full significa que el stack apunta al último valor dentro de este, y Empty, que apunta al primer valor libre después de este
+						  Ascending y descending indican si la dirección del stack crece o decrece.
+PUSH <reg list>						Equivalente a STMDB sp <reg list>
+POP <reg list>						Equivalente a LDMIA sp <reg list>
+
+
+
+
+
+
+PUNTO FLOTANTE EN ARM. Está implementado en un COPROCESADOR, osea que es totalmente independiente.
+registros:
+d1-d32 / s1-s64 (s2n en la parte alta, s2n+1 en la baja)
+FPSCR Floating Point Status Control Register
+Este registro sólo puede ser modificado por la función
+FCMP <freg dest>, <freg orig>		Compara dos registros de punto flotante.
+
+Nota: La bandera V en el FPSCR pasa de ser oVerflow a indicar "desordenado". Esta se enciende cuando la comparación contiene a NaN, pues no se puede
+ordenar con ningún otro número cuando se compare.
+
+Los sufijos condicionales de punto flotante son los siguientes:
+EQ 									Igual
+NE 									Diferente o desordenado
+VS 									Desordenado
+VC 									No desordenado
+GE 									Mayor o igual
+LS 									Menor o igual
+GT 									Mayor
+CC / LO / MI		 				Menor
+CS / HS / PL 						Mayor o igual, o desordenado
+LE 									Menor o igual, o desordenado
+HI 									Mayor o desordenado
+LT 									Menor o desordenado
+AL 									Siempre válido
+
+Instrucción de movimiento de datos:
+VMOV{cond}.F16/32/64 <Sd>, <Rt>		Copia datos entre dos registros FPU o entre registros ARM y FPU. Vector MOV
+
+Instrucción de conversión de datos:	Admiten {cond}
+VCVT (V Convert) tiene dos tipos:
+Conversión de entre enteros de 32 bits y flotantes:
+VCVT{redondeo}.{tipo Destino}.{tipo Origen} <vreg>, <reg>		Convierte un  valor de tipo Origen en tipo Destino. tipo: (entero) U32/64, (float) F32/64							
+																El redondeo se utiliza cuando se convierten floats en enteros.
+																A Redondear, 0.5 redondea para abajo.
+																N Redondear, 0.5 redondea hacia el número par más cercano.
+																P Redondeo hacia arriba. (al infinito?)
+																M Redondeo hacia abajo. (al infinito negativo?)
+																R Usar el modo indicado por FPSCR
+Conversión de precisión de flotantes:
+VCVT.F32/64.F64/32 <vreg doble/simple>, <vreg doble/simple>		Convierte un flotante de precisión media/simple en la otra precisión.
+VCVT{T/B}.F16/32.F32/16 <vreg simple>, <vreg simple> 			Para convertir de media precisión se especifica qué mitad del reg de precisión simple se usa.
+	Top o Bottom
+
+Instrucciones matemáticas:
+VABS{cond}.F32 <dest>, <origen>		dest = |origen|
+VNEG.F32 <dest>, <origen>			dest = -origen
+VADD.F32 <dest>, <origen>			dest = dest+origen
+VSUB.F32 <dest>, <origen>			dest = dest-origen
+VMUL.F32 <dest>, <origen>			dest = dest*origen
+VDIV.F32 <dest>, <origen>			dest = dest/origen
+VSQRT.F32 <dest>, <origen>			dest = sqrt(origen)
+
+Instrucciones Load/Store:
+VLDR{cond}.F16/32/64				
+VSTR{cond}.F16/32/64 F etiqueta		
+
+Instrucciones de la pila:
+VPOP{cond}.F16/32/64 <reg list>		Equivalente a VSTMDB{cond} sp! <reg list>
+VPUSH{cond}.F16/32/64 <reg list>	Equivalente a VLDMIA{cond} sp! <reg list>

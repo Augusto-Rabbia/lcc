@@ -1,0 +1,55 @@
+1)
+a- Se solicitará la dirección 240 + 430 = 670
+b- El segmento no tiene permisos de escritura. Por lo tanto, se generará una excepción de Violación de seguridad
+c- Se solicitará la dirección 2300 + 15 = 670
+d- La dirección solicitada está fuera del segmento, pues este tiene tamaño 100 y estamos pidiendo 130 bytes de memoria. 
+Excepción generada: Desplazamiento fuera de rango.
+e- El segmento al que se quiere referenciar está en la memoria de swap. Entonces, se generará la excepción de Segmento faltante
+
+2) 
+a- 	4300 / 128 = 33.59
+Entonces, tendremos que darle 34 páginas para que entren los 4300 bytes.
+Luego, 128*34 = 4352. Esto quiere decir que se perderán al menos 52 bytes por fragmentación interna. (4352-4300)
+
+	3068 / 128 = 23.97
+Entonces, tendremos que darle 24 páginas para que entren los 3068 bytes.
+Luego, 128 * 24 = 3072. Esto quiere decir que se perderán al menos 4 bytes por fragmentación interna. (3072-3068)
+
+c- Al tener páginas de 128 bytes, necesitaremos 7 bits para el offset, pues 2^7 = 128. Entonces, nos quedarán 16-7 = 9 bits para 
+el número de página, entonces habrán 2^9 = 512. Luego, si cada entrada ocupa 8 bytes, el tamaño de la tabla de paginación será de 8 * 512 = 4096 bytes.
+
+3)
+a- El sistema puede direccionar 2^50 bytes, entonces, tendrá direcciones de 50 bits.
+b- En el sistema habrá un máximo de 2^38 páginas virtuales, pues 12 bits de cada dirección corresponderán al desplazamiento, 
+dejando 50-12 = 38 bits para el número de página.
+c- En el sistema habrán 2GB/4KB = 2^31/2^12 = 2^19 direcciones físicas, pues este tiene 2GB de memoria, y debe dividirse esta
+memoria en páginas de 4KB cada una.
+d- 38 Y 19
+e- 2^38?
+f- las entradas de la tabla de página serán de 38 bits por el número de página más los dos bits dichos. Entonces, serán de 40 + 19 bits = 59 bits,
+y deberemos redondear hacia arriba, ocupando entonces un total de 8 bytes.
+g- 
+			p1			marco1
+			p2			marco2
+			...			...
+			p 2^38		marco2^38
+h- 8 bytes * 2^38
+
+4) 
+a-
+
+b- 128 * (38 + 19 + 2)
+
+5) 
+INFO: 	tam páginas: 2^16 = 64 KB imagino quisieron decir
+		cant dirs. virtuales: 2^25 = 32 MB
+		cant dirs. físicas: 2^22 = 4MB
+		tam. entradas tabla de páginas: cant_bits_páginas + 2 bits = 25-16 + 2 = 11 bits
+		cant. entradas tabla de páginas: 2^(25-16) = 2^9
+a- El tamaño de la tabla de páginas será el tamaño de cada entrada de la tabla de páginas por la cantidad de entradas.
+Es decir, 11 * 2^9 = 5632 bits
+
+b- Si se redujera el tamaño de las páginas a 16KB, lo que sucedería es que tendrían que haber 2^2 = 4 = 64KB/16KB bits adicionales para
+el número de página. Esto es un problema pues si se hiciera esto, se cuadruplicaría el tamaño de la tabla de paginación, llegando a 
+tener un tamaño de 22528 bits. Esto añadiría o costos mucho mayores para crear una memoria de este tamaño con una velocidad suficiente,
+o sino, tendría que implementarse paginación multinivel o TLB, lo cual podría reducir la eficiencia de la MMU considerablemente.

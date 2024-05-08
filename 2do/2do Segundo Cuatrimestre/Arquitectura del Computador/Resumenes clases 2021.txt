@@ -1,0 +1,88 @@
+C1: Presentación materia
+C 20/08: PPT Apunte 0 (Intro) //PPT apunte 1 (representación computacional de datos)
+C 25/08: Cont PPT ap 1
+C 27/08: Cont PPT ap 1 (representación hexa, octal)
+// PPT ap 1_2 (operadores de bits en C)
+C 01/09: Viendo ejs plancha 0 (suma complemento a 2, CF y OF maybe)
+C 03/09: PPT ap 2 (pto flotante)
+// Más pto flotante
+
+C 08/09: Cont PPT ap 2, PPT "GDB Tutorial", punto flotante en la práctica y flags
+
+C 10/09: Testeando GDB en C, viendo memoria y datos
+// ALU, logic gates, esquema del CPU, puntero de instucciones (rip), registros especiales (rax para retorno, etc) Introducción a Assembler (global main; main:; ret)
+
+C 15/09: Assembler: mov,add(copia de datos y suma). ap 3
+
+C 17/09: PPT "transparencia_arq_x86_64.pdf", buses de datos, registros, puntero de instrucción, mirando mov y viendo cómo se modifican los registros
+// instrucciones add y sub, cmp, sar/l y shr/l, rol/r, rcr/l (rotacion con acarreo), mul/imul
+
+C 22/09: usa las funciones de bash objdump -d "", hexdump/hexedit "". Explica que movq $0 == xorq, pero xorq prende PF y ZF (pq hace una op aritmética)
+intrucción jmp, saltos y saltos condicionales
+
+C 24/09: repaso saltos cond. alocación de memoria en .data, etiquetas de datos, endianness
+// Utilizar memoria en Assembler, off(r1,r2,k) = r1+r2*k+off
+
+C 01/10: cómo usar off(r1,r2,k) para hacer operaciones, introducción a la pila y usos (ejercicio de suma compleja usando pila para resolver fácilmente)
+PPT transparencia_arq_x86_64, viendo cómo se mueve la memoria en el stack, bajando en address
+// Diagramando la pila en un programa, copiando y sumando con datos en la pila con (%rsp). Llamando funciones de GAS en C. Se mete en la func con "s" en GDB
+Introducción a las convenciones de llamada (args van en rdi, rsi, ...)
+
+C 06/10: 30 mins de repaso. Diferencia entre jmp y call (call vuelve a la func original cuando termina, a dif de jmp). Cómo se llama a printf
+CALL hace pushq *dirección de la próxima instrucción* y cuando termina la función llamada, RET hace popq %rip
+
+C 13/10: pushq $sigue; jmp mi_func = call mi_func. Por convención de llamada en C, los argumentos de una func se evalúan de der a izq (si tenés sumas
+u operaciones DENTRO de la llamada a una func). dirección de variables globales y estáticas (ambas en el .data)
+
+C 15/10: Leyendo ap3 convenciones de llamada. Repitiendo esquema de memoria en llamada de función y accediendo a 7mo+ argumentos de una función.
+// Callee saved/caller saved regs. PPT transparencia_arq_x86_64_funciones_2. Argumentos de main (int argc, char** argv, char** envp)
+variables de entorno, posición en el stack de las variables de entorno (de envp, y tmb de argv).
+
+C 20/10: Repaso 20 mins. Syscalls. syscall(long number, ...). Cada llamada tiene su propia. Cómo usarlas en C y GAS. 
+Funciones variádicas en C (va_list/arg/start/end)
+
+Las syscalls se usan cuando se hacen operaciones que requieren un permiso especial.
+C 22/10: Funciones variádicas, función min(int cant_args, ...). Explica qué tipo de dato son va_list/arg/start/end
+// función goto en C. No se puede usar goto para ir a una función diferente. El compilador no permite porque se arruinaría el stack (no se haría leaveq)
+Eso es todo lo que hay para saber de goto. Es exactamente un jmp en GAS
+Corrutinas: min 24:00: jmp_buf/set_jmp/long_jump, min 1:12:00 TRANSFER(t1, t2)
+
+C 27/10: Toda la clase corrutinas. Explicación bastante profunda, planificador (scheduler) y múltiples corrutinas, breve mencion de ACTIVATE/YIELD.
+1:23:00 empieza con SEÑALES (intro de 10 minutos)
+
+C 29/10: Leyendo apartado pto flotanto p55 ap3. Intro a registros de punto fotante. funciones de pto flotante. 
+// Saltos condicionales e iteraciones(zzz). Instrucciones de conversión (cbw, cwde, cwd(eax:edx), cltq(long to quad), cqto (quad to oct, rax:rdx)
+movs (bl, wl, wq): movimiento convirtiendo, con signo. movz: movimiento convirtiendo, sin signo (osea, siempre rellena con 0s)
+
+C 05/11: Ahora sí CORRUTINAS + SEÑALES.
+Nota: setjmp y longjmp SÓLO guardan los registros, no los archivos abiertos, o variables globales.
+Para guardar las variables automáticas usamos las funciones de hace_stack y con eso podíamos recuperar el programa cuando el longjmp restauraba el rbp
+Sin embargo, esto no soluciona todos los problemas.
+clase en sí: 14:00 función signal y handlers. Cómo usar handlers de alarma para corrutinas. Mientras estoy en un handler de señales, no se puede
+reentrar a este. 
+Nota: Los planificadores suelen aprovechar el tiempo que tardan en hacerse las syscalls para hacer los YIELDs, por ejemplo.
+min 50:00: PPT transparencia_arq_x86_64_funciones_2: convenciones de llamada, 1:08:00 funciones anidadas, y recursivas al final.
+// Cómo acceder a variables de funciones "anidantes" desde funciones "anidadas", subiendo niveles de rbp, pasando punteros, tabla display.
+transparencia_arq_x86_64_memoria: Comparando la velocidad de las diferentes memorias, caché, principal, etc.
+1:30:00 memoria virtual de diferentes procesos. 1:40:00 introducción a la segmentación, darles a cada programa un segmento de memoria y virtualizar su
+manejo de memoria.
+Todo esto es teoría. 
+
+C 10/11: Introducción a ARM. El apunte no es completo, se necesita un poco de bibliografía, como Manual ARM (mencionan el manual de Intel).
+min 40: cómo correr ARM. min 51: características básicas de ARM (registros, convenciones de llamada)
+Cómo ejecutar y debuggear ARM:
+Compilar: arm-linux-gnueabi-gcc -g -static "filename"
+Ejecutar: qemu-arm a.out
+debuggear: 	terminal 1: qemu -g 1234(puerto) a.out
+			terminal 2: gdb-multiarch a.out
+					en gdb: target remote localhost:1234
+
+C 12/11: Explicando un montón de funciones de ARM y lo que hacen, desde 1 hasta 2.4
+// 2.5. Cargar memoria desde .text y .data, LDR, LDM, push, pop, [rn, r/#n, LSL #n](!), r/#c
+
+C 19/11: Memoria virtual. 
+Min 0-40 intro a la memoria virtual, leyendo transparencia_arq_x86_64_memoria. Cuello de botella, cómo se le otorga memoria a un proceso. Segmentación.
+Caracts de segmentación 35. leyendo sistemas_operativos_full.pdf Cap 5, adm de memoria, Hardware - MMU pag 245 y Segmentacion pag 261
+Paginación
+
+// FALTA. Sigue paginación, está en el docs

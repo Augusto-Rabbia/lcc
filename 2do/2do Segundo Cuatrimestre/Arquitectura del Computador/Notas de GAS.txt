@@ -1,0 +1,116 @@
+Notas de donde estudio:
+
+Prop general				Uso usual
+rax = acumulador 			#Acumular resulatos
+rbx = base					#Puntero donde comienza un dato
+rcx = contador				#Contar iteraciones
+rdx = datos					#Guardar datos en general, se usa para expandir rax en caso que el dato no entre en rax
+rsi = source index
+rdi = dest index			#Punteros a cadenas
+rbp = base pointer
+rsp = stack pointer			#Punteros a la pila
+r8-15 b-w-d
+
+Los registros rbx, rbp, rsp y r12-15 son CALLEE SAVED. 
+Esto significa que cuando ejecutamos un programa estos siempre deben tener su valor inicial al terminar.
+
+No prop general:
+rip 	instruction pointer
+rflags 	registro de banderas (llamado eflags en gdb)
+segmentos:
+cs 		code segment
+ss 		stack segment
+ds 		data segment
+es		extra segment
+fs		f segment
+gs		g segment
+
+
+Comandos:
+Operaciones de copia y movimiento de datos
+movS <op origen>, <op destino> 			# Copiar
+leaS <op fuente>, <op destino>			# Copia la direccion de memoria. Equivalente a movS $<op fuente>, <op destino>
+xchgS <op fuente>, <op destino> 		# Intercambia el contenido de los operandos
+Movimiento a la pila: (Modifican el %rsp (stack ptr), la pila es LIFO)
+pushS <op fuente> 						# Coloca el operando al tope de la pila de rsp
+popS <op destino>						# Guarda en el operando lo que esté al tope de la pila (opuesto a push)
+leaveS (no se en q caso no usariamos q)	# movq %rbp, %rsp ; popq %rbp (basicamente borra los elems de una func de la pila y la prepara para la prox func)
+
+Operaciones matemáticas.
+addS <op fuente>, <op destino>			# Suma
+adcS <op fuente>, <op destino>			# Suma considerando el bit de acarreo
+subS <op fuente>, <op destino>			# Resta
+sbbS <op fuente>, <op destino>			# Resta considerando el bit de acarreo
+
+incS <op>								# Suma 1
+decS <op>								# Resta 1
+
+imulS
+	<op>								# Multiplica %rax por op, el res tiene 128b y se guarda en rdx:rax (cifras de menos valor en rax)
+	<op fuente>, <op destino>						#multiplica
+	<op fuente 1>, <op fuente 2>, <op destino>		#multiplica op1 por op2 y guarda en destino
+mulS <op>								# Hace imul <op> sin signo
+idivS <op>								# Divide los 128 bits de rdx:rax por op, con signo
+div	<op>								# Division sin signo
+
+negS <op>								# Negacion aritmetica en complemento a 2
+
+Operaciones lógicas:
+andS <op fuente>, <op destino>			# Operación lógica AND bit a bit.
+orS <op fuente>, <op destino>			# Operación logica OR bit a bit.
+xorS <op fuente>, <op destino>			# Operación logica XOR bit a bit.
+notS <op>								# Negación bit a bit.
+
+salS/shlS <op>, <op destino>			# Desplazamiento lógico a la izquierda (poniendo 0s)
+sarS <op>, <op destino>					# Desplazamiento aritmético a la derecha (poniendo 1s)
+shrS <op>, <op destino>					# Desplazamiento lógico a la derecha (poniendo 0s)
+rolS <op>, <op destino>					# Rotación lógica a la derecha
+rorS <op>, <op destino>					# Rotación lógica a la izquierda
+rclS <op>, <op destino>					# Rotación lógica a la derecha con acarreo
+rcrS <op>, <op destino>					# Rotación lógica a la izquierda con acarreo
+
+
+Comparaciones
+cmpS <op fuente>, <op destino>			#Modifica las namderas ZF y SF haciendo destino-fuente. No modifica los ops
+testS <op fuente>, <op destino>			#Mod. ZF y SF haciendo un AND entre los ops. No guarda resultado, modifica banderas.
+
+
+
+Operaciones de salto de instrucciones:
+jump <etiqueta>							# Salto a instrucción.
+
+jX <etiqueta> 							# Salto condicional
+										# Por banderas: z - ZF, c - CF, o - OF
+										# Por comparar DESTINO con FUENTE: g/l (greater/lower) - e (equal) || a (above, comparación unsigned = g)
+										# Mira las flags, por lo que se necesita usar cmp antes
+										# Negación: n
+
+
+(<dir.>) 								# Direccionamiento indirecto a dir. de memoria.
+N(<dir. de memoria(D)>, <reg(R)>, M (const. entera)) 		# N + D + R*M
+== offset(base, indice, scale)
+
+
+Convenciones de llamada:
+rdi, rsi, rdx, rcx, r8, r9
+
+En C los args se leen DE DERECHA A IZQ (printf("%d, %d", i, i++) -> "i+1, i")
+
+pushq %rbp
+movq %rsp, %rbp
+
+movq %rbp, %rsp		#
+popq %rbp			# equivalente a leaveq?
+
+
+
+Memoria al llamar a func:
+Arg n
+..
+Arg 7					(%rbp+16)
+Direccion de retorno 	(%rbp+8)
+%rbp guardado
+registros guardados, variables locales y temporales
+Área de construcción de argumentos
+%rsp
+

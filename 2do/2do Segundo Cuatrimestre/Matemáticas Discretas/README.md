@@ -1,0 +1,1 @@
+La ejercitación y teoría proviene del libro Matemáticas Discretas 6ta edicion - Johnsonbaugh 
