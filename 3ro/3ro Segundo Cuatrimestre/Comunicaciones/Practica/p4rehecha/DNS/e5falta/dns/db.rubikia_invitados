@@ -1,0 +1,21 @@
+$TTL 2d
+$ORIGIN rubikia.com.
+
+@		IN	SOA	dns	hostmaster	(
+	2024041400
+	12h ; refresh time
+	30m ; retry time
+	2w  ; expiry time
+	2h	; negative TTL
+)
+
+		IN	NS	dns
+		IN	MX	10	mails
+		IN	NS	ns_backup
+
+ddi		IN	NS	dns2.ddi
+
+ns_backup IN A	193.168.7.18
+
+ezequiel	192.168.8.100
+

@@ -1,0 +1,23 @@
+$TTL 2d
+$ORIGIN fceia.unr.ar.
+
+@       IN  SOA ns1.fceia.unr.ar.   admin.fceia.unr.ar. (
+    2023110600  ; serial
+    12h ; check? time
+    1h ; retry time
+    2w ; expiry time
+    2h ; negative-reply-TTL
+)
+
+        IN  NS  ns1
+        IN  MX  10  admin.fceia.unr.ar.
+
+pc1     IN  A   192.168.0.101
+pc2     IN  A   192.168.0.102
+; ...
+pc12    IN  A   192.168.0.112
+
+www     IN  A   192.168.0.111
+ns1     IN  A   192.168.0.112
+        IN  A   192.168.0.112
+

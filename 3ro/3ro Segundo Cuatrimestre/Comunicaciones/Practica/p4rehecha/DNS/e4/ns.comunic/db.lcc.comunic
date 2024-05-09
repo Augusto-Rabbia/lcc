@@ -1,0 +1,16 @@
+$TTL 2d
+$ORIGIN comunic.lcc.ar.
+
+@		IN	SOA	ns	hostmaster	(
+	20240414 ; serial
+	12h
+	1h
+	2w
+	2h
+)
+
+		IN	NS	ns
+		IN	NS	ns1.lcc.ar.
+
+ns			IN	A	192.168.235.1
+ns1.lcc.ar.	IN	A	192.168.235.160

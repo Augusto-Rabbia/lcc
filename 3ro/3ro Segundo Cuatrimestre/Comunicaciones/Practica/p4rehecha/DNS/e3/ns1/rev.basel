@@ -1,0 +1,16 @@
+$TTL 2d
+$ORIGIN 0.0.0.1.4.9.2.2.c.7.6.0.1.0.0.2.IP6.ARPA.
+
+@		IN	SOA	ns1	hostmaster (
+	2024041400 ; serial num
+	12h ; refresh time
+	1h ; retry time
+	2w ; expiry time
+	2h ; neg TTL
+)
+
+		IN	NS	ns1.basel.net.
+		IN	NS	ns2.ba.basel.net.
+
+9.9.1.f.0.0.0.0.0.0.0.0.0.0.0.0		IN	PTR	ns1.basel.net.
+9.9.1.f.e.f.0.0.0.0.0.0.0.0.0.0		IN	PTR ns2.ba.basel.net.

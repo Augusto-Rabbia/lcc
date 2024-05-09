@@ -1,0 +1,20 @@
+$TTL 2d
+$ORIGIN basel.net.
+
+@		IN	SOA	ns1	hostmaster (
+	2024041400 ; serial num
+	12h ; refresh time
+	1h ; retry time
+	2w ; expiry time
+	2h ; neg TTL
+)
+
+		IN	NS	ns1
+		IN	NS	ns2.ba
+		IN 	MX	mx.ros
+
+mx.ros	IN	AAAA 2001:67c:2294:1000:0:0:fe:f199
+ns1		IN	AAAA 2001:67c:2294:1000:0:0:0:f199
+ns2.ba	IN	AAAA 2a03:2880:f113:8083:face:b00c:0:25de
+
+

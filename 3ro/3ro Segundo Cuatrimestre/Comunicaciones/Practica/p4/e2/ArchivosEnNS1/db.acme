@@ -1,0 +1,23 @@
+$TTL 1d
+$ORIGIN acme.ar
+
+@ IN SOA ns1.acme.ar hostmaster.acme.ar (
+    2023110600  ; serial
+    12h
+    1h
+    3w
+    2h
+)
+
+        IN  NS  ns1
+        IN  NS  ns2.ac
+        IN  MX  10 mx.acme.ar
+        IN  MX  20 mx.cs.acme.ar
+
+; ns1 IN CNAME www 
+; www IN A 200.13.147.60
+ns1     IN  A   200.13.147.60
+ns2.cs  IN  A   200.13.147.90
+mx      IN  A   200.13.147.59
+mx.cs   IN  A   200.13.147.113
+

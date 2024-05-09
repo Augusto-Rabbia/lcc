@@ -1,0 +1,118 @@
+    1) En PDF.
+
+    b- Cuántos enlaces necesita cada red?
+Malla: n(n-1)/2
+Anillo: n
+Bus: 1
+Estrella: n-1
+
+    2) Qué pasaría si se produce una falla en la conexión en una red de 5 dispositivos 
+       con la siguientes topologías?:
+HAY QUE HACER UNA REPRESENTACIÓN DE LAS REDES. MIRAR EN PDF.
+- Malla: Se pierde una conexión directa entre 2 nodos, pero podrían aún comunicarse indirectamente.
+- Anillo: Haría que uno de los sentidos de la comunicación se pierda. Todos los nodos aún se podrían
+comunicar, pero los dos nodos entre los que se perdió la conexión se ven forzados a dar toda la vuelta
+al anillo.
+- Bus: Un fallo partiría la red en dos. Todos los equipos en un lado de la conexión fallida
+aún se podían comunicar, pero no se podrían comunicar entre los dos grupos.
+- Estrella: Se cortaría la conexión de un dispositivo con el nodo central, siendo eliminado de la red.
+
+    3) Supongamos que el espectro de un canal esta situado entre 3 MHz y 4 MHz y la SNR es
+       24dB. Calcular la tasa de bits de información (C).
+Se llama Capacidad de un canal a la velocidad que se pueden transmitir los
+datos sobre ese canal y se expresada en bps (bits por segundo)
+
+BW = 4Mhz-3MHz = 1MHz
+SNR = 24dB = 10 log10 (SNR) = 251
+
+Aplicando la fórmula de Shannon:
+C= BW log2
+ ( 1 + SNR) = 8 Mbps
+Este es un límite teórico difícil de alcanzar.
+Aplicando Nyquist se puede alcanzar este límite.
+C= 2 BW log2
+ M = 2 x 106 log2
+ M → M = antilog2
+ (C/ 2BW) = 16 niveles
+
+VER REPRESENTACIÓN EN PDF
+
+    4)Una señal analógica contiene frecuencias hasta 20KHz.
+       Qué frecuencia de muestreo se necesita para reconstruir la señal a partir de sus muestras?
+Por teorema de Nyquist, se necesitan más de dos muestras por periodo.
+Por lo tanto, F_muestreo > 2F_max, con F_max = 20KHz.
+Entonces, F_muestreo = 40KHz
+
+    5) ¿En qué situaciones utilizaría un bridge, un repetidor o un switch? Justifique.
+VER DEFINICIONES DE CADA DISPOSITIVO EN EL PDF DE CONSIGNAS.
+    a- Mejorar el rendimiento de una red saturada.
+Switch:
+    b- Interconectar 2 dispositivos que disten a una distancia mayor de 300metros.
+Repetidor: Si dos dispositivos están a una distancia demasiado larga, la señal se atenuará.
+Un repetidor ayuda a contraarrestar este efecto, amplificando la señal.
+    c- Interconectar 2 redes con pocas máquinas y poco tráfico.
+Hub: Dispositivo que permite centralizar el cableado de una red y poder ampliarla.
+Esto significa que recibe una señal y la repite por todos sus puertos.
+    d- Interconectar 2 redes que utilicen diferentes estándares.
+Bridge: Dispositivo que interconecta segmentos de una red. Funciona a través de
+una tabla de direcciones MAC detectadas en cada segmento al que está conectado.
+
+    6)
+?????????? Par z vs fibr optica vs etc.?
+
+
+    7) Entre las estaciones C y D, cuál es la más cercana a A.
+La estación C es más cercana a A que D.
+Esto se puede deducir del hecho que la estación C puede escuchar la señal RTS que envía A,
+activando su NAV.
+Por otro lado, la estación D no escucha la señal RTS de A, pero sí escucha la señal CTS de B,
+y activa su NAV.
+Por lo tanto, es posible deducir que D está fuera del alcance de A.
+
+    8) Determine cuál es la información enviada y que metodó de enmarcado es:
+        DLE-STX-STX-DLE-DLE-ABC-DLE-ETX-DLE-BCD-DLE-STX
+Según pdf de practica resuelta:
+"El enmarcado corresponde a Orientados DLE-ABC a Caracteres – Caracteres de inicio fin con
+inserción de carácter."
+En mi entendimiento, busqué en ASCII y STX y ETX son bytes de inicio y fin de texto, mientras
+que ETX es el byte de escape. Luego, para enviar un byte de escape en el segmento de datos, se
+colocan 2 bytes de escape. Entonces:
+
+|DLE-STX|     |STX-DLE-DLE-ABC|     |DLE-ETX|   |DLE-BCD|   |DLE-STX|
+ inicio     datos: STX-DLE-ABC        fin          idk       inicia otro mensaje
+
+    10) Qué tipo de servicio le daría a la capa 3 sabiendo que:
+a- Tiene una tasa de errores baja
+Servicio sin conexión y sin reconocimiento (Tipo I) porque no es recomendable utilizar el control
+de flujo y detección de errores puesto que es muy poco probable que ocurra.
+
+b- Tiene un medio de transmisión inestable
+Servicio sin conexión y con reconocimiento (Tipo III) porque si bien no se establece una
+conexión lógica los datagramas son confirmados.
+
+c- Necesita transmitir en tiempo real
+Servicio sin conexión y sin reconocimiento (Tipo I) porque se transmiten tramas hacia el destino
+sin esperar reconocimiento.
+
+d- Se necesita transmitir datos multimedia, pero con control de errores
+Servicios con conexión (Tipo II) porque se necesita una conexión lógica entre los extremos y
+garantizar la recepción de tramas en orden correcto (control de flujo y detección de errores).
+
+
+    11) Realizar la arquitectura de una red compuesta por dos notebooks que acceden al medio de
+comunicación en forma inalámbrica y dos Pcs.
+    VER FOTO PracticaN1_Clase.pdf
+
+    12)
+------------+------------------+------------------+------------------+------------------+
+            | Fastbit Ethernet | Gigabit Ethernet |  Canal de Fibra  | LAN inalámbrica  |
+------------+------------------+------------------+------------------+------------------+
+Velocidad   |  
+------------+
+Medio de Tx |
+------------+
+Estándar    |
+------------+
+
+
+

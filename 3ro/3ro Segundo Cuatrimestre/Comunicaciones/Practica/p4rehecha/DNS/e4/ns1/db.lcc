@@ -1,0 +1,22 @@
+$TTL 2d
+$ORIGIN lcc.ar.
+
+@		IN	SOA	ns1	hostmaster (
+	2024041400 ; serial num
+	12h
+	1h
+	2w
+	2h
+)
+
+		IN	NS	ns1
+		IN	NS	ns2
+		IN	NS	ns.fceia.ar.
+comunic	IN	NS	ns.comunic
+		IN	NS	ns1
+
+ns1			IN	A	192.168.235.1
+ns2			IN	A	192.168.235.2
+ns.comunic	IN	A	192.168.235.160
+
+; other addresses

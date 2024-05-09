@@ -1,0 +1,23 @@
+$TTL 2d
+$ORIGIN 235.168.192.IN-ADDR.ARPA.
+
+@ IN SOA ns1.lcc.ar hostmaster.lcc.ar (
+    12h ; refresh time
+    30m ; retry time
+    2w  ; expiry time
+    2h  ; neg TTL
+)
+
+			IN	NS	ns1
+			IN	NS	ns2				; definiendo los esclavos
+			IN	NS	ns.fceia.ar.	; de ns1
+128/25		IN	NS	ns.comunic
+			IN	NS	ns1
+
+1			IN	PTR	ns1.lcc.ar.
+2			IN	PTR	ns2.lcc.ar.
+160     	IN	PTR	ns.comunic.lcc.ar.
+
+; hosts de la red 192.168.235.0/24
+; 
+

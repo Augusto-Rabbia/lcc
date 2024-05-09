@@ -1,0 +1,21 @@
+$TTL 1d
+$ORIGIN 147.13.200.IN-ADDR.ARPA
+
+@ IN SOA ns1.acme.ar hostmaster.acme.ar (
+    2023110600  ; serial
+    12h
+    1h
+    3w
+    2h
+)
+
+        IN  NS  ns1
+        IN  NS  ns2.ac
+
+;60 IN PTR www.acme.ar ; si ponemos el www como CNAME de ns1
+60      IN  PTR ns1.acme.ar.
+90      IN  PTR ns2.cs.acme.ar.
+59      IN  PTR mx.acme.ar
+113     IN  PTR mx.cs.acme.ar.
+
+

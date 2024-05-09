@@ -1,0 +1,27 @@
+DB=10.0.2.3
+SERVERS=10.0.2.0/24
+LAN=10.0.1.0/24
+ADM=10.0.1.22
+IF_LAN=eth0
+IF_SER=eth1
+IF_DMZ=eth2
+IF_INT=eth3
+IP=200.3.1.2
+WWW_DNS=181.16.1.18
+DNS=181.16.1.19
+I=/sbin/iptables
+
+$I -P INPUT DROP
+$I -P FORWARD DROP
+$I -P OUTPUT DROP
+
+########## INPUT Y OUTPUT
+
+$I -A INPUT -m state --state INVALID -j DROP
+$I -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+$I -A OUTPUT -m state --state INVALID -j DROP
+$I -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+
+

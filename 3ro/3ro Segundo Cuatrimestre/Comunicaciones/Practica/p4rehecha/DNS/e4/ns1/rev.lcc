@@ -1,0 +1,23 @@
+$TTL 2d
+$ORIGIN 235.168.192.IN-ADDR.ARPA.
+
+@		IN	SOA	ns1.lcc.ar.	hostmaster.lcc.ar. (
+	2024041400 ; serial num
+	12h
+	1h
+	2w
+	2h
+)
+
+		IN	NS	ns1.lcc.ar.
+		IN	NS	ns2.lcc.ar.
+		IN	NS	ns.fceia.ar.
+128/25	IN	NS	ns.comunic.lcc.ar.
+		IN	NS	ns1.lcc.ar.
+
+160			IN	CNAME	160/25.235.168.192.IN-ADDR.ARPA.
+1			IN	PTR	ns1.lcc.ar.
+2			IN	PTR	ns2.lcc.ar.
+160			IN	PTR	ns.comunic.lcc.ar.
+
+; other addresses

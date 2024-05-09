@@ -1,0 +1,26 @@
+; slave
+$TTL 2d
+$ORIGIN rubikia.com.
+
+@ IN SOA dns hostmaster (
+	2023110700 ; Serial
+	12h
+	30m
+	3w
+	2h ; neg TTL
+)
+
+		IN NS dns
+		IN NS dns2.ddi
+		IN MX 10 mails
+
+		IN NS ns_backup			; ?
+ns_backup IN A	193.168.7.18	; ?
+
+dns		IN	A	192.168.7.18
+dns2.ddi IN	A	192.168.7.180
+www		IN	A	192.168.7.181
+mails	IN	CNAME	dns
+flavio	IN	A	192.168.7.10
+; ezequiel IN A	192.168.8.100 ; No hace esta pq solo hace res dir de trabajo?
+

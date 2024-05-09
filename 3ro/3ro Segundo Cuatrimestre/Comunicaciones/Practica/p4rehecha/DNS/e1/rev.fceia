@@ -1,0 +1,21 @@
+$TTL 2d
+$ORIGIN 0.168.192.IN-ADDR.ARPA.
+
+@		IN SOA	ns1.fceia.unr.ar. hostmaster.fceia.unr.ar. (
+	2024140400  ; serial
+	12h ; refresh time
+	1h ; retry time
+	2w ; expiry time
+	2h ; neg TTL 
+	)
+
+		IN	NS	ns1.fceia.unr.ar.
+; En los rev no se ponen los RR MX
+
+101		IN	PTR	pc1.fceia.unr.ar.
+102		IN	PTR	pc2.fceia.unr.ar.
+...
+110		IN	PTR	pc10.fceia.unr.ar.
+111		IN	PTR	www.fceia.unr.ar.
+112		IN	PTR	ns1.fceia.unr.ar.
+

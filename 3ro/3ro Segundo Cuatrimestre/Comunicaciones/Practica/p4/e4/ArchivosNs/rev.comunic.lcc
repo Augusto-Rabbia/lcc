@@ -1,0 +1,17 @@
+$TTL 2d
+$ORIGIN 235.168.192.IN-ADDR.ARPA.
+
+@ IN SOA ns hostmaster (
+	2023110700 ; Serial
+	1d ; refresh time
+	1h ; retry time
+	2w ; expiry time
+	2h ; neg TTL 
+)
+
+		IN	NS	ns
+		IN	NS	ns1.lcc.ar.
+
+
+160		IN	PTR	ns
+; hosts en comunic.lcc.ar.
