@@ -1,0 +1,2068 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/manus/ontologies/2024/3/JuegosTP"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/manus/ontologies/2024/3/JuegosTP">
+    <Prefix name="" IRI="http://www.semanticweb.org/manus/ontologies/2024/3/JuegosTP/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="JuegosTP" IRI="http://www.semanticweb.org/manus/ontologies/2024/3/JuegosTP#"/>
+    <Declaration>
+        <Class IRI="#CantidadDeJugadores"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Características"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Conexión"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Consola"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DarkSouls"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dificultad"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dimensiones"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Edades"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fifa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ForzaHorizon"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GTA"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Género"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Habilidades"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Juegos2D"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Juegos3D"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#JuegosDeCarreras"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#JuegosDeRol"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#JuegosMMORPG"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#JuegosMOBA"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#JuegosMetroidvania"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#JuegosOnline"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Jugadores"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mecánicas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Misiones"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PlayStation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PosCámara"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Recursos"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SoulsLike"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VideoJuego"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Xbox"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esParaEdad"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#seJuegaEn"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneCantidadDeJugadores"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneConexion"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneDificultad"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneDimension"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneGenero"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneHabilidad"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneJugadores"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneMecanica"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneMisiones"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tienePosCamara"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tienePropiedad"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneRecurso"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Precio"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Adolescentes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Adultos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ArbolDeHabilidades"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Ataques"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Aventura"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bloodborne"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Carreras"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Castlevania"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Casual"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Computadora"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DarkSouls1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DarkSouls2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DarkSouls3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Dificil"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Dota2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#EldenRing"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Equipamiento"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Estrategia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Facil"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fifa21"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fifa22"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fifa23"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fifa24"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ForzaHorizon4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ForzaHorizon5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Futbol"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GTA4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GTA5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GranTurismo7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Hechizos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HollowKnight"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Mana"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Media"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MisionesPrincipales"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MisionesSecundarias"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Movimiento"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Multijugador"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MundoAbierto"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NintendoSwitch"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Offline"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Online"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Oro"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pelea"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PeleasContraJefes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Plataformas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PlayStation3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PlayStation4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PlayStation5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PrimeraPersona"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Resistencia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Rol"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Shooter"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Silksong"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Simulación"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SubirDeNivel"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TerceraPersona"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Todos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#UnJugador"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Xbox360"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#XboxOne"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#XboxSeriesX"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#2D"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#3D"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Partidas/os"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Dificultad"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#Dificil"/>
+            <NamedIndividual IRI="#Facil"/>
+            <NamedIndividual IRI="#Media"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Dimensiones"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#2D"/>
+            <NamedIndividual IRI="#3D"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Edades"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#Adolescentes"/>
+            <NamedIndividual IRI="#Adultos"/>
+            <NamedIndividual IRI="#Todos"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Juegos2D"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneDimension"/>
+            <NamedIndividual IRI="#2D"/>
+        </ObjectHasValue>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Juegos3D"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneDimension"/>
+            <NamedIndividual IRI="#3D"/>
+        </ObjectHasValue>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#JuegosDeRol"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <Class IRI="#Recursos"/>
+            </ObjectSomeValuesFrom>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Rol"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#ArbolDeHabilidades"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#Equipamiento"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#SubirDeNivel"/>
+            </ObjectHasValue>
+            <ObjectExactCardinality cardinality="2">
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <Class IRI="#Misiones"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#JuegosMMORPG"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#JuegosDeRol"/>
+            <ObjectComplementOf>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneConexion"/>
+                    <NamedIndividual IRI="#Offline"/>
+                </ObjectHasValue>
+            </ObjectComplementOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneConexion"/>
+                <NamedIndividual IRI="#Online"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#JuegosMOBA"/>
+        <ObjectIntersectionOf>
+            <ObjectComplementOf>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneConexion"/>
+                    <NamedIndividual IRI="#Offline"/>
+                </ObjectHasValue>
+            </ObjectComplementOf>
+            <ObjectComplementOf>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneJugadores"/>
+                    <NamedIndividual IRI="#UnJugador"/>
+                </ObjectHasValue>
+            </ObjectComplementOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneConexion"/>
+                <NamedIndividual IRI="#Online"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Estrategia"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Pelea"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneJugadores"/>
+                <NamedIndividual IRI="#Multijugador"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#Equipamiento"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#SubirDeNivel"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#Partidas/os"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneRecurso"/>
+                <NamedIndividual IRI="#Mana"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneRecurso"/>
+                <NamedIndividual IRI="#Oro"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#JuegosMetroidvania"/>
+        <ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Aventura"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Pelea"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Plataformas"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneHabilidad"/>
+                <NamedIndividual IRI="#Movimiento"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneJugadores"/>
+                <NamedIndividual IRI="#UnJugador"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#MundoAbierto"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#JuegosOnline"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneJugadores"/>
+            <NamedIndividual IRI="#Online"/>
+        </ObjectHasValue>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PosCámara"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#PrimeraPersona"/>
+            <NamedIndividual IRI="#TerceraPersona"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#SoulsLike"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#VideoJuego"/>
+            <ObjectIntersectionOf>
+                <ObjectSomeValuesFrom>
+                    <ObjectProperty IRI="#tieneMecanica"/>
+                    <Class IRI="#Recursos"/>
+                </ObjectSomeValuesFrom>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneGenero"/>
+                    <NamedIndividual IRI="#Rol"/>
+                </ObjectHasValue>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneMecanica"/>
+                    <NamedIndividual IRI="#ArbolDeHabilidades"/>
+                </ObjectHasValue>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneMecanica"/>
+                    <NamedIndividual IRI="#Equipamiento"/>
+                </ObjectHasValue>
+                <ObjectHasValue>
+                    <ObjectProperty IRI="#tieneMecanica"/>
+                    <NamedIndividual IRI="#SubirDeNivel"/>
+                </ObjectHasValue>
+                <ObjectExactCardinality cardinality="2">
+                    <ObjectProperty IRI="#tieneMecanica"/>
+                    <Class IRI="#Misiones"/>
+                </ObjectExactCardinality>
+            </ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#PeleasContraJefes"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#CantidadDeJugadores"/>
+        <Class IRI="#Jugadores"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Conexión"/>
+        <Class IRI="#Jugadores"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DarkSouls"/>
+        <Class IRI="#SoulsLike"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DarkSouls"/>
+        <ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneDificultad"/>
+                <NamedIndividual IRI="#Dificil"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneDimension"/>
+                <NamedIndividual IRI="#3D"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneJugadores"/>
+                <NamedIndividual IRI="#UnJugador"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneRecurso"/>
+                <NamedIndividual IRI="#Oro"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneRecurso"/>
+                <NamedIndividual IRI="#Resistencia"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DarkSouls"/>
+        <ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMisiones"/>
+                <NamedIndividual IRI="#MisionesPrincipales"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMisiones"/>
+                <NamedIndividual IRI="#MisionesSecundarias"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DarkSouls"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#esParaEdad"/>
+            <NamedIndividual IRI="#Adolescentes"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Dificultad"/>
+        <Class IRI="#Características"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Dimensiones"/>
+        <Class IRI="#Características"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Edades"/>
+        <Class IRI="#Características"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fifa"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fifa"/>
+        <ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneDimension"/>
+                <NamedIndividual IRI="#3D"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Casual"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Futbol"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Simulación"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#Partidas/os"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tienePosCamara"/>
+                <NamedIndividual IRI="#TerceraPersona"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fifa"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#esParaEdad"/>
+            <NamedIndividual IRI="#Todos"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ForzaHorizon"/>
+        <Class IRI="#JuegosDeCarreras"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ForzaHorizon"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneConexion"/>
+            <NamedIndividual IRI="#Online"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ForzaHorizon"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneGenero"/>
+            <NamedIndividual IRI="#Simulación"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GTA"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GTA"/>
+        <ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneCaracteristica"/>
+                <NamedIndividual IRI="#MisionesPrincipales"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneCaracteristica"/>
+                <NamedIndividual IRI="#MisionesSecundarias"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneDimension"/>
+                <NamedIndividual IRI="#3D"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Pelea"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Shooter"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGenero"/>
+                <NamedIndividual IRI="#Simulación"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneMecanica"/>
+                <NamedIndividual IRI="#MundoAbierto"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tienePosCamara"/>
+                <NamedIndividual IRI="#PrimeraPersona"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tienePosCamara"/>
+                <NamedIndividual IRI="#TerceraPersona"/>
+            </ObjectHasValue>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneRecurso"/>
+                <NamedIndividual IRI="#Oro"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GTA"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#esParaEdad"/>
+            <NamedIndividual IRI="#Adultos"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Habilidades"/>
+        <Class IRI="#Mecánicas"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Juegos2D"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Juegos2D"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tienePosCamara"/>
+            <NamedIndividual IRI="#TerceraPersona"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Juegos3D"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosDeCarreras"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosDeCarreras"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#esParaEdad"/>
+            <NamedIndividual IRI="#Todos"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosDeCarreras"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneGenero"/>
+            <NamedIndividual IRI="#Carreras"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosDeCarreras"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneMecanica"/>
+            <NamedIndividual IRI="#Partidas/os"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosDeRol"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosMMORPG"/>
+        <Class IRI="#JuegosDeRol"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosMOBA"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosMetroidvania"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosOnline"/>
+        <Class IRI="#VideoJuego"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#JuegosOnline"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneJugadores"/>
+            <NamedIndividual IRI="#Multijugador"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Misiones"/>
+        <Class IRI="#Mecánicas"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PlayStation"/>
+        <Class IRI="#Consola"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PosCámara"/>
+        <Class IRI="#Características"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Recursos"/>
+        <Class IRI="#Mecánicas"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SoulsLike"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#esParaEdad"/>
+            <NamedIndividual IRI="#Adolescentes"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SoulsLike"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#tieneGenero"/>
+            <NamedIndividual IRI="#Aventura"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#seJuegaEn"/>
+            <Class IRI="#Consola"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneCantidadDeJugadores"/>
+            <Class IRI="#CantidadDeJugadores"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneCaracteristica"/>
+            <Class IRI="#Características"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneConexion"/>
+            <Class IRI="#Conexión"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneGenero"/>
+            <Class IRI="#Género"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneJugadores"/>
+            <Class IRI="#Jugadores"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneMecanica"/>
+            <Class IRI="#Mecánicas"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tienePosCamara"/>
+            <Class IRI="#PosCámara"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#tieneDimension"/>
+            <Class IRI="#Dimensiones"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VideoJuego"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="#esParaEdad"/>
+            <Class IRI="#Edades"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Xbox"/>
+        <Class IRI="#Consola"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Edades"/>
+        <NamedIndividual IRI="#Adolescentes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Edades"/>
+        <NamedIndividual IRI="#Adultos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mecánicas"/>
+        <NamedIndividual IRI="#ArbolDeHabilidades"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Habilidades"/>
+        <NamedIndividual IRI="#Ataques"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Aventura"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SoulsLike"/>
+        <NamedIndividual IRI="#Bloodborne"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Carreras"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosMetroidvania"/>
+        <NamedIndividual IRI="#Castlevania"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Casual"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Consola"/>
+        <NamedIndividual IRI="#Computadora"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DarkSouls"/>
+        <NamedIndividual IRI="#DarkSouls1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DarkSouls"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DarkSouls"/>
+        <NamedIndividual IRI="#DarkSouls3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosMOBA"/>
+        <NamedIndividual IRI="#Dota2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SoulsLike"/>
+        <NamedIndividual IRI="#EldenRing"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mecánicas"/>
+        <NamedIndividual IRI="#Equipamiento"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Estrategia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Fifa"/>
+        <NamedIndividual IRI="#Fifa21"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Fifa"/>
+        <NamedIndividual IRI="#Fifa22"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Fifa"/>
+        <NamedIndividual IRI="#Fifa23"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Fifa"/>
+        <NamedIndividual IRI="#Fifa24"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ForzaHorizon"/>
+        <NamedIndividual IRI="#ForzaHorizon4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ForzaHorizon"/>
+        <NamedIndividual IRI="#ForzaHorizon5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Futbol"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#GTA"/>
+        <NamedIndividual IRI="#GTA4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#GTA"/>
+        <NamedIndividual IRI="#GTA5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosDeCarreras"/>
+        <NamedIndividual IRI="#GranTurismo7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Habilidades"/>
+        <NamedIndividual IRI="#Hechizos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Juegos2D"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosMetroidvania"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VideoJuego"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Recursos"/>
+        <NamedIndividual IRI="#Mana"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Misiones"/>
+        <NamedIndividual IRI="#MisionesPrincipales"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Misiones"/>
+        <NamedIndividual IRI="#MisionesSecundarias"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Habilidades"/>
+        <NamedIndividual IRI="#Movimiento"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CantidadDeJugadores"/>
+        <NamedIndividual IRI="#Multijugador"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mecánicas"/>
+        <NamedIndividual IRI="#MundoAbierto"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Consola"/>
+        <NamedIndividual IRI="#NintendoSwitch"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Conexión"/>
+        <NamedIndividual IRI="#Offline"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Conexión"/>
+        <NamedIndividual IRI="#Online"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosMetroidvania"/>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosMetroidvania"/>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Recursos"/>
+        <NamedIndividual IRI="#Oro"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Pelea"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mecánicas"/>
+        <NamedIndividual IRI="#PeleasContraJefes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Plataformas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PlayStation"/>
+        <NamedIndividual IRI="#PlayStation3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PlayStation"/>
+        <NamedIndividual IRI="#PlayStation4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PlayStation"/>
+        <NamedIndividual IRI="#PlayStation5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PosCámara"/>
+        <NamedIndividual IRI="#PrimeraPersona"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Recursos"/>
+        <NamedIndividual IRI="#Resistencia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Rol"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Shooter"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosMetroidvania"/>
+        <NamedIndividual IRI="#Silksong"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Género"/>
+        <NamedIndividual IRI="#Simulación"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mecánicas"/>
+        <NamedIndividual IRI="#SubirDeNivel"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VideoJuego"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PosCámara"/>
+        <NamedIndividual IRI="#TerceraPersona"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Edades"/>
+        <NamedIndividual IRI="#Todos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CantidadDeJugadores"/>
+        <NamedIndividual IRI="#UnJugador"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#JuegosDeRol"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Xbox"/>
+        <NamedIndividual IRI="#Xbox360"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Xbox"/>
+        <NamedIndividual IRI="#XboxOne"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Xbox"/>
+        <NamedIndividual IRI="#XboxSeriesX"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Dimensiones"/>
+        <NamedIndividual IRI="#2D"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Dimensiones"/>
+        <NamedIndividual IRI="#3D"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mecánicas"/>
+        <NamedIndividual IRI="#Partidas/os"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#Bloodborne"/>
+        <NamedIndividual IRI="#Shooter"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#Bloodborne"/>
+        <NamedIndividual IRI="#MundoAbierto"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+        <NamedIndividual IRI="#DarkSouls1"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls1"/>
+        <NamedIndividual IRI="#PlayStation3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls1"/>
+        <NamedIndividual IRI="#Xbox360"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <NamedIndividual IRI="#PlayStation3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <NamedIndividual IRI="#PlayStation4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <NamedIndividual IRI="#PlayStation5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <NamedIndividual IRI="#Xbox360"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <NamedIndividual IRI="#XboxOne"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <NamedIndividual IRI="#XboxSeriesX"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <NamedIndividual IRI="#DarkSouls3"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls3"/>
+        <NamedIndividual IRI="#PlayStation5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#DarkSouls3"/>
+        <NamedIndividual IRI="#XboxSeriesX"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#Dota2"/>
+        <NamedIndividual IRI="#Computadora"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#Adultos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#PlayStation4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#PlayStation5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#XboxOne"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#XboxSeriesX"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMisiones"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#MisionesPrincipales"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMisiones"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <NamedIndividual IRI="#MisionesSecundarias"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#Fifa21"/>
+        <NamedIndividual IRI="#Online"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <NamedIndividual IRI="#Fifa22"/>
+        <NamedIndividual IRI="#Fifa21"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#Fifa22"/>
+        <NamedIndividual IRI="#Online"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <NamedIndividual IRI="#Fifa23"/>
+        <NamedIndividual IRI="#Fifa22"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#Fifa23"/>
+        <NamedIndividual IRI="#Online"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <NamedIndividual IRI="#Fifa24"/>
+        <NamedIndividual IRI="#Fifa23"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#Fifa24"/>
+        <NamedIndividual IRI="#Online"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+        <NamedIndividual IRI="#ForzaHorizon4"/>
+        <NamedIndividual IRI="#ForzaHorizon5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <NamedIndividual IRI="#ForzaHorizon5"/>
+        <NamedIndividual IRI="#ForzaHorizon4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+        <NamedIndividual IRI="#GTA4"/>
+        <NamedIndividual IRI="#GTA5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneRecurso"/>
+        <NamedIndividual IRI="#GTA4"/>
+        <NamedIndividual IRI="#Oro"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#GranTurismo7"/>
+        <NamedIndividual IRI="#Offline"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneJugadores"/>
+        <NamedIndividual IRI="#GranTurismo7"/>
+        <NamedIndividual IRI="#Multijugador"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneJugadores"/>
+        <NamedIndividual IRI="#GranTurismo7"/>
+        <NamedIndividual IRI="#UnJugador"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <NamedIndividual IRI="#Todos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneHabilidad"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <NamedIndividual IRI="#Hechizos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <NamedIndividual IRI="#PeleasContraJefes"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMisiones"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <NamedIndividual IRI="#MisionesPrincipales"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMisiones"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <NamedIndividual IRI="#MisionesSecundarias"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneRecurso"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <NamedIndividual IRI="#Oro"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Adolescentes"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Computadora"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Online"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Estrategia"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Pelea"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneHabilidad"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Hechizos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Equipamiento"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#SubirDeNivel"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Partidas/os"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneRecurso"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Mana"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneRecurso"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Oro"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+        <NamedIndividual IRI="#Todos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneDimension"/>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+        <NamedIndividual IRI="#2D"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+        <NamedIndividual IRI="#Todos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneDimension"/>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+        <NamedIndividual IRI="#2D"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <NamedIndividual IRI="#Todos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneDimension"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <NamedIndividual IRI="#2D"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <NamedIndividual IRI="#PeleasContraJefes"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tienePosCamara"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <NamedIndividual IRI="#TerceraPersona"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Todos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#NintendoSwitch"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Offline"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneDificultad"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Facil"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Aventura"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Plataformas"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneJugadores"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#UnJugador"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <NamedIndividual IRI="#Adolescentes"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <NamedIndividual IRI="#Computadora"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <NamedIndividual IRI="#Online"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <NamedIndividual IRI="#Casual"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <NamedIndividual IRI="#Estrategia"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <NamedIndividual IRI="#PeleasContraJefes"/>
+    </ObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#Offline"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneJugadores"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <NamedIndividual IRI="#UnJugador"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Computadora"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#PlayStation3"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#PlayStation4"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#PlayStation5"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#Xbox360"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#XboxOne"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <NamedIndividual IRI="#XboxSeriesX"/>
+    </NegativeObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Bloodborne"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2015</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Bloodborne"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#DarkSouls1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2011</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#DarkSouls1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2014</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#DarkSouls2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">55</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#DarkSouls3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2016</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#DarkSouls3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">60</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Dota2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2013</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Dota2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#EldenRing"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">65</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Fifa21"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2020</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Fifa21"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Fifa22"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Fifa22"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Fifa23"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Fifa23"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Fifa24"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Fifa24"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">60</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#ForzaHorizon4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2018</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#ForzaHorizon4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#ForzaHorizon5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#ForzaHorizon5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">60</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#GTA4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2008</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#GTA4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#GTA5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2013</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#GTA5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">65</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#GranTurismo7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#GranTurismo7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2017</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#HollowKnight"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2009</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#LeagueOfLegends"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2015</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#OriAndTheBlindForest"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#OriAndTheWillOfTheWisps"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">30</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2025</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#Silksong"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2017</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#SuperMarioOdyssey"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2004</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Precio"/>
+        <NamedIndividual IRI="#WorldOfWarcraft"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0</Literal>
+    </DataPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <ObjectProperty IRI="#tienePropiedad"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneCantidadDeJugadores"/>
+        <ObjectProperty IRI="#tieneJugadores"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+        <ObjectProperty IRI="#tienePropiedad"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <ObjectProperty IRI="#tieneJugadores"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneDificultad"/>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneDimension"/>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <ObjectProperty IRI="#tienePropiedad"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneHabilidad"/>
+        <ObjectProperty IRI="#tieneMecanica"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneJugadores"/>
+        <ObjectProperty IRI="#tienePropiedad"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <ObjectProperty IRI="#tienePropiedad"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneMisiones"/>
+        <ObjectProperty IRI="#tieneMecanica"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tienePosCamara"/>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#tieneRecurso"/>
+        <ObjectProperty IRI="#tieneMecanica"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+    </InverseObjectProperties>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#EsPrecuelaDe"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+    </TransitiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <Class IRI="#VideoJuego"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#tienePropiedad"/>
+        <Class IRI="#VideoJuego"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#EsSecuelaDe"/>
+        <Class IRI="#VideoJuego"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#esParaEdad"/>
+        <Class IRI="#Dimensiones"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#seJuegaEn"/>
+        <Class IRI="#Consola"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneCantidadDeJugadores"/>
+        <Class IRI="#CantidadDeJugadores"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneCaracteristica"/>
+        <Class IRI="#Características"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneConexion"/>
+        <Class IRI="#Conexión"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneDificultad"/>
+        <Class IRI="#Dificultad"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneDimension"/>
+        <Class IRI="#Dimensiones"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneGenero"/>
+        <Class IRI="#Género"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneJugadores"/>
+        <Class IRI="#Jugadores"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneMecanica"/>
+        <Class IRI="#Mecánicas"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tienePosCamara"/>
+        <Class IRI="#PosCámara"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <Class IRI="#VideoJuego"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Precio"/>
+        <Class IRI="#VideoJuego"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#AñoDeLanzamiento"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Precio"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#DarkSouls</IRI>
+        <Literal>Popular franquicia de videojuegos que originó el término &quot;Souls-Like&quot;.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Edades</IRI>
+        <Literal>Las edades para las cuales está recomendado un juego (Rating).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Fifa</IRI>
+        <Literal>Juegos muy conocidos de fútbol con ediciones anuales</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ForzaHorizon</IRI>
+        <Literal>Popular franquicia de videojuegos de carreras.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#GTA</IRI>
+        <Literal>Popular franquicia de videojuegos de Rockstar Games</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Juegos2D</IRI>
+        <Literal>Abarca a los juegos en 2 Dimensiones.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Juegos3D</IRI>
+        <Literal>Abarca a los juegos en 3 Dimensiones.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#JuegosDeCarreras</IRI>
+        <Literal>Abarca a los juegos que son de carreras.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#JuegosDeRol</IRI>
+        <Literal>Abarca a los juegos en 3 Dimensiones.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#JuegosMMORPG</IRI>
+        <Literal>Los juegos MMORPG (por sus siglas, Massive Multiplayer Online RolePlaying Game) son juegos con características de juegos de Rol, pero creados en mundos abiertos en servidores de miles de jugadores.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#JuegosMOBA</IRI>
+        <Literal>Sus siglas significan &quot;Multiplayer Online Battle Arena&quot;, y son un género de juegos que consisten en partidas donde equipos de jugadores, a través de estratégia en equipo y habilidad individual, asediar las bases de sus oponentes, superando a sus oponentes a través de recursos y niveles.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#JuegosMetroidvania</IRI>
+        <Literal>Los juegos Metroidvania son juegos que se caracterizan por tener una progresión no lineal bloqueada en un mundo abierto por mejoras en habilidades de movimiento.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#JuegosOnline</IRI>
+        <Literal>Abarca a los juegos En Linea.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SoulsLike</IRI>
+        <Literal>Juegos con elementos RPG y un progreso que te permite mejorar a tus personajes y a tus armas, pero también castiga tu muerte al quitarte recursos o avance, lo cual los hace infames por su dificultad.</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+
