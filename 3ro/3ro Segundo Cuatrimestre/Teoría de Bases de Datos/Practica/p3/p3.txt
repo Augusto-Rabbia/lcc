@@ -1,0 +1,261 @@
+- E1: Son \-expresiones?
+a- (λx x)                       No, falta el . dsp del \x de la abstracción.
+b- x y z (y x)                  Sí, (((x y) z) (y x))
+c- λx. u x y                    Sí, (λx. ((u x) y))
+d- λu. u (λx. y)                Sí, (λu. (u (λx. y)))
+e- x λy                         No, no hay un lambda-término dsp de \y
+f- (λu. v u u) z y              Sí,
+g- λx. y λz. z                  Sí,
+h- u x (y z) (λv. v y)          Sí,
+i- (λx y z. x z (y z)) u v w    Sí,
+
+___________________________________________________________________________________________________________________________________________
+- E2: Dar las ocurrencias: (Marcadas con ||)
+
+    1) ocurrencias de x y en \x y. x y:
+\x y. |x y| 
+
+    2) ocurrencias de u v en x (u v) (\u. v (u v)) u v:
+x |(u v)| (\u. v |(u v)|) u v
+
+Notemos que la u v del final no es una ocurrencia pq al asociarse a la izquierda, hay un paréntesis entre ellos.
+
+    3) ocurrencias de λu. u en λu. u v: Ninguna.
+
+
+___________________________________________________________________________________________________________________________________________
+- E3: Indicar, las ocurrencias son libres y ligadas para cada variable, y a qué λ-abstracción están ligadas las que lo estén.
+
+Nota: Marco con un número las variables ligadas y sus ligaduras correspondientes, y con una L las libres.
+
+a) (λy. y (λx. x) z)
+     1  1   2  2  L
+
+b) (λy. x (λx. x) z)
+        L   1  1  L
+
+c) (λy. y (λy. y) y x)
+     1  1   2  2  1 L
+
+d) (λy. y (λx. y)) y x
+     1  1   _  1   L L
+
+e) (λx y z. x (λy. y z) w) (λx. x y) w z
+     1 _ 2  1   3  3 2  L    4  4 L  L L
+
+f) (λx x. x y (λy y. x y)) x
+     _ 1  1 L   _ 2  1 2   L
+
+
+___________________________________________________________________________________________________________________________________________
+- E4: Evaluar las siguientes sustituciones:
+
+a) (λy. y (λx. x) z) [(λw. w t)/z]
+
+(\y. y (\x. x) z)[(\w. w t)/z]
+≡ (\y. (y (\x. x) z)[(\w. w t)/z])
+≡ (\y. (y (\x. x))[(\w. w t)/z] z[(\w. w t)/z])
+≡ (\y. (y[(\w. w t)/z] (\x. x[(\w. w t)/z])) (\w. w t))
+≡ (\y. y (\x. x) (\w. w t))
+
+
+b) ((λy. y (λx. x)) z) [(λw. w t)/z]
+≡
+≡
+
+
+c) (λy. x (λx. x) z) [(λw. w t)/z]
+≡
+≡
+
+d) (λy. x (λx. x) z) [(λw. w y)/z]
+
+e) (λy. y z) [z/y]
+
+f) (λy. y z) [y/z]
+
+
+___________________________________________________________________________________________________________________________________________
+- E5: Indicar cuáles de los siguientes pares de λ-expresiones son α-equivalentes
+
+a) (λx y z. x (λy. y z) w),             (λt u v. t (λz. z v)) w
+No son α-equivalentes pues la primera es una abstracción y la 2da una aplicación. (w está afuera)
+
+b) (λx y z. x (λy. y z) w),             (λx y w. x (λy. y w) z)
+FV(λx y z. x (λy. y z) w) = {w} != {z} = FV(λx y w. x (λy. y z) w)
+
+c) (λx y z. x (λy. y z) w),             (λx t z. x (λu. t z)) w
+No son α-equivalentes pues la primera es una abstracción y la 2da una aplicación. (w está afuera)
+
+d) (λx y z. x (λy. y z) w) (λx. x y),    (λx y w. x (λy. y z) w) (λz. z y)
+FV((λx y z. x (λy. y z) w) (λx. x y)) = {w} != {} = FV((λx y w. x (λy. y z) w) (λz. z y))
+
+e) (λx y z. x (λy. y z) w),             (λv u t. v (λv. v t) w)
+Sí son: 
+(λx y z. x (λy. y z) w)                 ≡α
+(λv. (λy z. x (λy. y z) w)[v/x])        ≡
+(λv y z. v (λy. y z) w)                 ≡α
+(λv u. (λz. v (λy. y z) w)[u/y])        ≡
+(λv u z. v (λy. y z) w)                 ≡α
+(λv u t. (v (λy. y z) w)[t/z])          ≡
+(λv u t. v (λy. y t) w)                 ≡α
+(λv u t. v (λv. (y t)[v/y]) w)          ≡
+(λv u t. v (λv. v t) w)
+
+Y vale.
+
+
+___________________________________________________________________________________________________________________________________________
+- E7: Son β-equivalentes?
+    a) (λf.(λx. x x)(λx. f(x x))),      (λx. x)(λf.(λx y. x y) (λx. x x) ((λz. z) (λx. f ((λx y. x y) x x))))
+(λx. x)(λf.(λx y. x y) (λx. x x) ((λz. z) (λx. f ((λx y. x y) x x))))   ->β
+λf.(λx y. x y) (λx. x x) ((λz. z) (λx. f ((λx y. x y) x x)))            ->β
+λf.(λy. (λx. x x) y) ((λz. z) (λx. f ((λx y. x y) x x)))                ->β
+λf.(λy. y y) ((λz. z) (λx. f ((λx y. x y) x x)))                        ->β
+λf.(λy. y y) (λx. f ((λx y. x y) x x))                                  ->β
+λf.(λy. y y) (λx. f ((λy. x y) x))                                      ->β
+λf.(λy. y y) (λx. f (λy. x x))                                          ->β
+λf.(λy. y y) (λx. f (λy. x x))                                          ≡α
+λf.(λx. x x) (λx. f (λy. x x))
+
+Entonces, son β-equivalentes.
+
+    b) (λf.(λx. x x) (λx. f(x x))),         (λf.(λx y. x x) (λx. f(x x)) (λx. x f (x x)))
+Reduciendo el 1ro
+λf.(λx. x x) (λx. f(x x))     ->β
+λf.(λx. f(x x)) (λx. f(x x))     ->β
+
+Reduciendo el 2do
+λf.(λx y. x x) (λx. f(x x)) (λx. x f (x x))         ->β
+λf.(λy. (λx. f(x x)) (λx. f(x x))) (λx. x f (x x))  ->β
+λf.(λx. f(x x)) (λx. f(x x))
+
+Entonces, son β-equivalentes.
+
+    c) (λf.(λx. x x) (λx. f (x x))), (λf.(λy x. x x) (λx. f (x x)) (λx. x f (x x)))
+
+
+    d) (λf.(λx. x x) (λx. f (x x))), (λf.(λy x. x x) (λx. f (x x)) (λy. f (y y)))
+
+
+___________________________________________________________________________________________________________________________________________
+- E8: Para diferenciar entre tener una forma normal y ser una forma normal, probar que
+    a) M[N/x] es una β-nf ⇒ M es una β-nf
+
+
+    b) M[N/x] tiene una β-nf !⇒ M tiene una β-nf
+
+___________________________________________________________________________________________________________________________________________
+- E9:Dado el combinador Y ≡ λx.(λy. x (y y)) (λy. x (y y)).
+    a) Probar que el Y es un combinador de punto fijo. O sea, que Y X =_β X (Y X)
+
+(λx.(λy. x (y y)) (λy. x (y y))) X        ->β
+(λx. x (λy. x (y y)) (λy. x (y y))) X     ->β
+X (λy. X (y y)) (λy. X (y y))             ->β
+
+Y tenemos que 
+(λx.(λy. x (y y)) (λy. x (y y))) X ->β
+(λy. X (y y)) (λy. X (y y))
+
+Por lo que vale
+
+
+    b) Probar que Y no tiene forma normal β.
+λx.(λy. x (y y)) (λy. x (y y))          ->β
+λx. x ((λy. x (y y) (λy. x (y y))))     ->β ...
+
+    c) Probar que para todo Z y n > 0 se puede resolver en x la siguiente ecuación
+            x y1 ... yn = Z
+       Es decir que se puede encontrar un lambda término X tal que X y1 . . . yn =β Z[X/x].
+D/ Por inducción
+    i) CB: Si n=0, buscamos X tal que:
+Z = x, y 
+
+    X =_β Z[X/x] =_β (λx. Z) X
+
+En este caso, X ≡ Y (λx. Z)
+
+
+Ahora, queremos generalizar: Buscamos X/
+X y1 ... yn =_β
+
+
+___________________________________________________________________________________________________________________________________________
+- E10: Definir para cada una de las siguientes representaciones de los naturales en λ-calc, las funciones suma y pred y los predicados isNotZero e isZero.
+    a) 0 ≡ λx.false     n + 1 ≡ pair true n = \b. if b then true else n
+    
+pred = snd
+isNotZero = fst
+isZero = not isNotZero
+    
+suma n m = \n m. if (isZero m) then n else (suma (pair true n) (snd m))
+
+Pero esto tiene el problema de que se autoreferencia:
+suma n m = Y (\f. \n m. if (isZero m) then n else (suma (pair true n)) (snd m)) 
+
+
+    b) 0 ≡ λx. true     n + 1 ≡ pair n false
+
+pred = fst
+isZero = snd
+isNotZero = not isZero
+
+suma es similar
+
+
+___________________________________________________________________________________________________________________________________________
+- E11: Dar λ-expresiones para el producto y la potencia de numerales de Church.
+
+prod n m = \n m. m (suma n) 0
+potencia n m = \n m. m (prod n) 1
+
+
+___________________________________________________________________________________________________________________________________________
+- E12: Dar λ-expresiones para la función predecesor y la resta de numerales de Church, donde la resta se define como
+        resta m n = m-n     si m > n
+                  = 0       en otro caso
+
+Usamos la técnica de los pares para el predecesor:
+Donde el par es pair x y = \x y. \b. if b then x else = \x y. \b. b x y
+
+Inicialmente, tendremos el par (0,0), y aplicaremos una función que sume 1 al segundo lugar, y defina el primero como el 2do:
+
+pred n = \n. fst (n (\p. (snd p) (Succ (snd p))) (0,0))
+
+Ahora podemos proceder a definir la resta:
+
+resta n m = \n m. m pred n
+
+
+___________________________________________________________________________________________________________________________________________
+- E13: Determinar a qué operación corresponde la siguiente λ-expresión al ser aplicada a un número de Church:
+    λn. λf x. snd (n H (pair 1 x))
+donde H ≡ λp. if (isZero (fst p)) then (pair 1(f (snd p))) else (pair 0 (snd p))
+
+aplicar n veces la función H, caso base (pair 1 x)
+
+\f x. snd (5 (λp. if (isZero (fst p)) then (pair 1(f (snd p))) else (pair 0 (snd p))) (pair 1 x))
+
+si n = 0, entonces es \f x. x
+si n = 1, entones es \f x. x 
+si n = 2, ... 
+COMPLETAR.
+
+
+___________________________________________________________________________________________________________________________________________
+- Ejercicios adicionales:
+
+Max en \-calc
+
+max n m = if (isZero (resta n m)) then m else n
+
+Max para una lista en \-calc
+
+maxL = \l. foldr l max 0 
+
+
+Representar módulo en \-calc
+
+mod n m = if (isZero (resta n m)) then m else (mod n (resta n m))
+
+

@@ -1,0 +1,115 @@
+Preservación y progreso
+
+- Progreso: Si t:T (Es decir, bien tipado) y cerrado (es decir, sin variables libres),
+    entonces t es un valor o existe t'/ t -> t'
+(es decir, t no está atascado).
+
+- Preservación: Si t:T y t->t', entonces t':T.
+
+
+Tanto el lenguaje de expresiones aritméticas como el lambda cálculo simplemente tipado son seguros (Preservación y Progreso)
+
+
+
+____________________________________________________________________________________
+  > Lenguaje de expresiones aritméticas
+
+REGLAS DE TIPADO:
+
+true : Bool (T-True) false : Bool (T-False)
+
+t1:Bool   t2:T   t3:T
+________________________(T-If)
+if t1 then t2 else t3 :T
+
+0 : Nat (T-Zero)
+
+t:Nat
+____________(T-Pred)
+pred t : Nat
+
+t:Nat
+___________(T-Suc)
+suc t : Nat
+
+t:Nat
+_______________(T-iszero)
+iszero t : Bool
+
+
+____________________________________________________________________________________
+  > Lambda cálculo simplemente tipado
+
+REGLAS DE TIPADO:
+    - Para definirlas, usaremos un conjunto Γ llamado entorno de tipado.
+
+x:Nat ∈ Γ
+___________(T-Suc)
+suc x : Nat
+
+x:T ∈ Γ
+_________(T-Var)
+Γ ⊢ x:T
+
+Γ ⊢ t1:T1->T2 Γ ⊢ t2:T1
+____________________________(T-App)
+Γ ⊢ (t1 t2):T2
+
+Γ,x:T1 ⊢ t:T2
+____________________(T-Abs)
+Γ ⊢ λx.t:T1->T2
+
+-- Adiciones de sistema T de Godel -- (Añade Bools, naturales, recursion: "R" e if-then-else: "D")
+
+Γ ⊢ true:Bool (T-True)
+Γ ⊢ false:Bool (T-False)
+
+Γ ⊢ t1:Bool   Γ ⊢ t2:T   Γ ⊢ t3:T
+_________________________________(T-D)
+Γ ⊢ D t1 t2 t3 : T
+
+
+Γ ⊢ 0:Nat (T-0)
+
+Γ ⊢ t : Nat
+_________________(T-Succ)
+Γ ⊢ succ t : Nat
+
+Γ⊢t1:T    Γ⊢t2:T→Nat->T    Γ⊢t3:Nat
+________________________________________(T-Rec)
+Γ⊢ R t1 t2 t3 : T
+
+
+-- REGLAS DE EVALUACIÓN call-by-value
+
+t1 -> t1'
+______________(E-App1)
+t1 t2 -> t1' t2
+
+t2 -> t'2
+_____________(E-App2)
+v t2 -> v t'2
+
+(λx. t) v -> t [v/x] (E-AppAbs)
+
+___________________________________________________________________________________________________________________________________________
+  -- SISTEMA F  --
+
+Se añaden:
+  - Reglas de tipado:
+
+Γ,X ⊢ t:T
+_______________(T-TAbs)
+Γ ⊢ ΛX.t : ∀X.T
+
+Γ ⊢ t1:∀X.T
+___________________(T-TApp)
+Γ ⊢ t1⟨T2⟩: T[T2/X]
+
+  - Reglas de evaluación:
+
+t->t'
+___________(E-TApp)
+t⟨T⟩->t'⟨T⟩
+
+(ΛX.t)⟨T⟩ -> t[T/X] (E-TAppAbs)

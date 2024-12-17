@@ -1,0 +1,155 @@
+{- Ejercicio 1:
+Dado el siguiente lenguaje
+
+Sintaxis:
+t   ::= x | suct | 0 | unit | inl t | inr t | casetof inl x⇒t; inr x⇒t
+v   ::= nv | unit | inlv | inrv
+nv  ::= 0 | suc nv
+T   ::= N | B | T+T
+
+Semántica:
+t->t'
+______________(E-Suc)
+suc t -> suc t'
+
+t->t'
+_______________(E-Inl)
+inl t -> inl t'
+
+t->t'
+_______________(E-Inr)
+inr t -> inr t'
+
+case inl v of inl x1⇒t1; inr x2⇒t2 -> t2[x2/v] (E-Case1)
+
+case inr v of inl x1⇒t1; inr x2⇒t2 -> t1[x1/v] (E-Case2)
+
+Sistema de tipos:
+
+Γ ⊢ unit:B (T-Unit)
+
+Γ ⊢ t:N
+_____________(T-Suc)
+Γ ⊢ suc t : N
+
+Γ ⊢ t:T
+________________(T-Inl)
+Γ ⊢ inl t : T+T'
+
+Γ ⊢ t:T'
+________________(T-Inr)
+Γ ⊢ inr t : T+T'
+
+Γ ⊢ t:T1+T2   Γ,x1:T1 ⊢ t1:T   Γ,x2:T2 ⊢ t2:T
+_____________________________________________(T-Case)
+(Γ ⊢ case t of inl x1⇒t1; inr x2⇒t2) : T
+
+-}
+
+-- a) Enunciar la propiedad de seguridad.
+
+Un lenguaje es seguro si cumple con preservación y progreso.
+    - Cumple preservación sii para todo término t, si t:T y t->t', entonces t':T
+    - Cumple progreso sii para todo término t:T cerrado, existe t'/ t->t'
+
+-- b) El lenguaje dado no cumple la propiedad de progreso.
+--    Dar un ejemplo de por qué no cumple esta propiedad y modificar el lenguaje para que sí la cumpla.
+
+El siguiente término está bien tipado, pero no existe t'/ t->t':
+
+    case inl (case inr 0 of inl x1 => 0; inr x2 => 0) of inl x1⇒0; inr x2⇒0
+
+Para modificar el lenguaje, se puede agregar el siguiente regla:
+
+t -> t'
+_________________________________________________________________(E-Case)
+case t of inl x1⇒t1; inr x2⇒t2 -> case t' of inl x1⇒t1; inr x2⇒t2
+
+-- c) ¿De qué manera podr ́ıa definirse el tipo Bool usando la suma de tipos?
+--    Dar definiciones de true, false e if como formas derivadas usando sumas de expresiones.
+
+Bool = B + B
+
+true = inl Unit
+false = inr Unit
+
+ite b t t' = case b of inl unit=>t; inr unit=>t'
+
+{- Ejercicio 2:
+Se representar ́an los tipos de un lenguaje con el siguiente tipo de datos:
+data Type v = TVar v                    -- Variable de tipo
+              | TInt                    -- Tipo Integer
+              | Fun (Type v) (Type v)   -- Tipo de función
+-}
+-- a) Crear la instancia de la clase Monad para Type (cuyo efecto sea la sustitución de variables) y probar que es una mónada
+
+instance Monad Type where
+    return x        = Tvar x
+    (TVar x) >>= f  = f x
+    TInt >>= f      = TInt
+    (Fun t1 t2) >>= f = Fun (t1 >>= f) (t2 >>= f)
+
+Demostración de que es una mónada
+(monad.1) return x >>= f = f x
+return x >>= f      = {def ret}
+(TVar x) >>= f      = {def >>=}
+f x
+
+(monad.2) m >>= return = m
+Por inducción:
+    i) CB:
+m = (TVar x):
+(TVar x) >>= return     = {def >>=}
+return x                = {def return}
+(TVar x)
+
+m = TInt:
+TInt >>= return         = {def >>=}
+TInt
+
+    ii) PI: (HI) sup que vale tk >>= return = tk, para k=1,2
+m = Fun t1 t2:
+(Fun t1 t2) >>= return              = {def >>=}
+Fun (t1 >>= return) (t2 >>= return) = {HI}
+Fun t1 t2
+
+(monad.3) m >>= (\x -> k x >>= h) = (m >>= k) >>= h
+Por inducción:
+    i) CB:
+m = (TVar x):
+(TVar x) >>= (\x -> k x >>= h)          = {def >>=}
+(\x -> k x >>= h) x                     = {app}
+k x >>= h                               = {def >>=, (TVar x) >>= k = k x}
+((TVar x) >>= k) >>= h
+
+m = TInt:
+TInt >>= (\x -> k x >>= h)              = {>>=}
+TInt                                    = {>>=}
+TInt >>= h                              = {>>=, (TInt >>= k) = TInt}
+(TInt >>= k) >>= h
+
+    ii) PI:
+
+-- b) Definir las siguientes funciones: 
+   
+--   i. apply:: (a -> Type b) -> Type a -> Type b, que aplique una sustituci ́on a un tipo.
+apply f m = m >>= f
+
+--   ii.comp:: (a -> Type b) -> (c -> Type a) -> (c -> Type b), que permita componer sustituciones.
+comp f g = (\x -> g x >>= f)
+
+{- Ejercicio 3
+Usando la representación de listas en lambda cálculo dada en clase, definir las funciones isNil, head y tail.
+-}
+
+Nil = \f b. b
+Cons = \x xs. \f b. f x (xs f b)
+
+isNil = \l. (and false) true
+
+donde and = \b1 b2. b1 (b2 true false) false
+
+head = \l. l (\fx folxs. fx) Nil 
+
+tail = \l. fst (l (\x xs. pair (snd xs) (cons x (snd xs))) (pair Nil Nil))
+

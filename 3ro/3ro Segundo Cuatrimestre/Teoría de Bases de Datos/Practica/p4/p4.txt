@@ -1,0 +1,387 @@
+- E1: Demostrar mediante un árbol de derivación de tipado si los siguientes términos están bien tipados o no.
+    a) succ (if iszero (succ 0) then 0 else succ 0)
+
+_____(T-Zero)
+0:Nat
+____________(T-Succ)
+succ 0 : Nat 
+________________________(T-is0) _____(T-Zero) _____(T-Zer0)
+iszero (succ 0): Bool           0:Nat         0:Nat
+___________________________________________________(T-if)
+if iszero (succ 0) then 0 else succ 0 : Nat
+_________________________________________________(T-Suc)
+suc (if iszero (succ 0) then 0 else succ 0) : Nat
+
+    b) if (if iszero 0 then false else true) then 0 else succ 0
+    
+
+: Nat
+    
+    c) if true then iszero 0 else succ 0
+    
+No tipa, pues
+
+_____(T-Zero)
+0:Nat
+_______________(T-IsZero)
+iszero 0 : Bool
+
+_____(T-Zero)
+0:Nat
+____________(T-Succ)
+succ 0 : Nat
+
+Y por lo tanto, no se puede aplicar ninguna regla al término.
+    
+    d) if false then (if succ 0 then true else false) else false
+
+No tipa, pues succ 0 : Nat
+
+
+___________________________________________________________________________________________________________________________________________
+- E2: Probar que el lenguaje de expresiones aritméticas visto en la teoría es seguro (progreso y preservación).
+D/  - Progreso: Si t:T, entonces t valor o existe t'/ t->t'
+Por inducción en la derivación t:T (última regla)
+
+    CB: 
+        1) T-True/T-False, entonces t = true/t = false, y t valor.
+        2) T-Zero, entonces t=0, y t valor.
+
+    PI: (HI) Para toda subderivación de t->t', r->r', vale la hip.
+        1) T-If
+Entonces,
+
+t1:Bool   t2:T   t3:T
+_______________________(T-If)
+t=if t1 then t2 else t3
+
+entonces, por HI, 
+    - t1 es un valor: como es de tipo bool, t=true o t=false, y se aplican E-IfTrue o E-IfFalse
+    - existe t1'/ t1->t1': se aplica E-If
+
+        2) T-Suc
+Entonces,
+t':Nat
+______________(T-Suc)
+t=suc t' : Nat
+
+entonces, por HI,
+    - t' es un valor: Como es de tipo Nat, t'=0 o t'=suc t'' para algún t'' valor numético. Entonces t valor.
+    - Existe t''/t'->t'': Se puede aplicar E-Suc
+
+        3) T-Pred - Casi análogo (Si t' es valor, t no es valor, pero se aplica E-PredZero o E-PredSuc)
+
+        4) T-IsZero
+Entonces,
+t':Nat
+__________________
+t=iszero t' : Bool
+
+Entonces, por HI,
+    - t' es un valor: t'=0 o t=suc t'' para algún t'' nv. Se aplican E-IsZeroZero y E-IsZeroSuc
+    - Existe t''/t'->t'': Se aplica E-IsZero
+
+Queda demostrado por el principio de inducción que el lenguaje tiene proceso
+
+  - - - - - - - - - - 
+Ahora, demostremos la preservación: Sea t:T, y t'/ t->t', entonces t':T
+Por inducción sobre t->t':
+    PI: (HI) Para toda subderivación t->t', vale t:T => t':T
+        1) E-IfTrue: (False análogo)
+
+Entonces t tiene la forma:
+t = if true then t1 else t2 -> t1
+Luego, t:T. Si t1:Y y t2:Z
+
+
+
+
+___________________________________________________________________________________________________________________________________________
+- E3: La propiedad de preservación nos dice que un término bien tipado evoluciona a otro término bien tipado. 
+      ¿Es verdad también la inversa? Probar que si t->t'y t': T, entonces t:T, o dar un contraejemplo.
+
+Creo que es verdadero (PROBAR)
+
+
+___________________________________________________________________________________________________________________________________________
+- E4: Determinar si están bien tipados:
+
+    a) f:Bool->Bool ⊢ λx. f (f true): Bool
+
+Está mal tipado, pues el término es una abstracción, por lo que la única regla aplicable a esta es T-Abs.
+Esta deberá tener un tipo de la forma T->T
+
+    b) G=(f:Bool->Bool) ⊢ λx. f (if x then false else x): Bool->Bool
+
+
+                                _________________(T-Var)  ______________________(T-False)  _________________(T-Var)
+f:Bool->Bool ∈ G,x:Bool         G,x:Bool ⊢ x:Bool         G,x:Bool⊢ false : Bool           G,x:Bool ⊢ x:Bool
+_______________________(T-Var)  ____________________________________________________________________________(T-If)
+G,x:Bool ⊢ f:Bool->Bool         G,x:Bool ⊢ if x then false else x : Bool
+________________________________________________________________________(T-App)
+G,x:Bool ⊢ f (if x then false else x)
+______________________________________________(T-Abs)
+G ⊢ λx. f (if x then false else x): Bool->Bool
+
+    c) G=(f:Bool->Bool) ⊢ λg. λx. g (f x): (Bool->Bool)->Bool->Bool
+
+                           f:Bool->Bool \in J         x:Bool \in J
+                           __________________(T-Var)  ____________(T-Var)
+g:Bool->Bool \in J         J |- f:Bool->Bool          J |- x:Bool
+__________________(T-Var)  ______________________________________(T-App)
+J |- g:Bool->Bool          J |- f x: Bool
+_________________________________________(T-App)
+J=H,x:Bool ⊢ g (f x): Bool
+__________________________________________(T-Abs)
+H=G,g:Bool->Bool ⊢ λx. g (f x): Bool->Bool
+_____________________________________________(T-Abs)
+G ⊢ λg. λx. g (f x): (Bool->Bool)->Bool->Bool
+
+    d) G=(and:Bool->Bool->Bool, z:Bool) ⊢ λx. λy. and x (and z y): Bool
+
+Falso, el termino es una abstracción, por lo que la única regla aplicable es T-Abs, que requiere que el tipo sea de la forma T1->T2.
+
+
+___________________________________________________________________________________________________________________________________________
+- E5: ¿Existe algún contexto Γ y tipo T tal que Γ |- x x : T?
+Veamos cómo se vería la derivación:
+
+Γ |- x:T'->T   Γ |- x:T'
+________________________(T-App)
+Γ |- x x:T
+
+Pero esto significa que en el contexto Γ, x:T' y x:T'->T
+
+Ahora bien, puede existir T y T'/ T'->T = T'?
+Si permitieramos tipos infinitos, sería posible, pero como nuestros tipos serán finitos,
+si T' tuviera k "->", entonces T'->T tendría al menos k+1. Absurdo.
+
+
+___________________________________________________________________________________________________________________________________________
+- E6: En el λ-calc simple tipado con un único tipo base Unit, y una constante *: Unit. ¿Es verdad que si t→t' y t': T, entonces t: T? Justificar.
+
+Veamos un caso de t->t', con t=(\x.*) (* *):
+
+(\x.*) (* *)
+______________(E-AppAbs)
+*[(* *)/x] = *
+
+(Ya que *[(* *)/x] = *).
+Ahora, vemos que t' = *:Unit. 
+
+La consigna nos pregunta entonces si (\x.*) (* *):Unit.
+Pero observamos que este término no tipa, pues (* *) no tipa.
+
+Esto es equivalente a decir que no vale la inversa de preservacion, como vimos en el ej3)
+
+
+___________________________________________________________________________________________________________________________________________
+- E7: Estudiar la relación entre el λ-calc simple tipado a la Curry y a la Church.
+
+Antes de hacer el ejercicio, notar:
+    - En el \-calc a la Church, las abstracciones piden un tipo en particular: \x:T. t.
+    - En el \-calc a la Curry, las abstracciones no especifican tipo: \x. t
+        - Las abstracciones son entonces un esquema de términos.
+
+
+a) Definir el λ-c´alculo simple tipado a la Church.
+Para definir el \-calc simple tipado, necesitamos definir el lenguaje:
+    - Tipos:
+    T ::= B             Donde B es un tipo base
+        | T->T
+    - Términos:
+    t ::= x
+        | t t
+        | \x:T. t
+                donde x es una constante
+Y luego, las reglas de evaluación y tipado
+    - Reglas de evaluación:
+t1->t1'
+_______________(E-App1)
+t1 t2 -> t1' t2
+
+t2->t2
+_______________(E-App2)
+t1 t2 -> t1 t2'
+
+(\x:T. t) v -> t[v/x] (E-Abs)
+
+    - Reglas de tipado:
+x:T E Γ
+________(T-Var)
+Γ ⊢ x:T
+
+Γ ⊢ t1:T->T'   Γ |- t2:T
+_________________________(T-App)
+Γ ⊢ t1 t2:T'
+
+Γ, x:T ⊢ t:T'
+____________________(T-Abs)
+Γ ⊢ (\x:T. t):T->T'
+
+b) Definir una función |x| que mapee un término a la Church x en un término a la Curry mediante la eliminación de tipos en los términos.
+
+TODO
+
+
+c) Mostrar la correspondencia entre derivaciones de juicios de tipado a la Church y a la Curry, es decir, mostrar
+que:
+• Si Γ ⊢ t': T en el sistema a la Church, entonces Γ ⊢ |t'|:T en el sistema a la Curry.
+• Si Γ ⊢ t : T en el sistema a la Curry, entonces existe t'tal que t = |t'| y Γ ⊢ t': T en el sistema a la Church.
+
+TODO
+
+
+___________________________________________________________________________________________________________________________________________
+    -- SISTEMA T de Gödel --
+
+- E8: Definir en T:
+    a) pred: Nat->Nat: predecesor
+
+pred 0 = 0
+pred (succ n) = n
+
+pred = \n. R 0 (\ra. a) n
+
+    b) suma: Nat->Nat->Nat: suma de naturales
+
+suma n 0 = n
+suma n (succ m) = succ (suma n m)
+
+suma = \nm. R n (\ra. succ r) m
+
+    c) mult: Nat->Nat->Nat: multiplicación de naturales
+
+mult n 0 = 0
+mult n (succ m) = suma n (mult n m)
+
+mult = \nm. R 0 (\ra. suma n r) m
+
+    d) is0: Nat->Bool: comparación con 0
+
+is0 0 = True
+is0 (succ n) = False
+
+is0 = \n. R True (\ra. False) n
+
+    e) eq: Nat->Nat->Bool: igualdad de naturales
+
+eq n 0 = is0 n
+eq n (succ m) = eq (pred n) m
+
+eq = \nm. R (is0 n) (\ra. r)
+
+
+
+___________________________________________________________________________________________________________________________________________
+- E9: Mostrar la relación entre T y las funciones recursivas primitivas:
+
+    a) Mostrar que toda función recursiva primitiva es definible en T.
+
+COMPLETAR
+
+    b) Mostrar que existen funciones en T que no son primitivas recursivas.
+
+COMPLETAR
+
+〈〉
+
+
+___________________________________________________________________________________________________________________________________________
+    -- SISTEMA F --
+
+- E10: Dadas las siguientes definiciones:
+        double: ∀X. (X->X)->X->X
+        double = ΛX. λf:X->X. λx:X. f (f x)
+        doubleNat: (Nat->Nat)->Nat->Nat
+        doubleNat = double〈Nat〉
+        doubleFun: ((Nat->Nat)->Nat->Nat)->(Nat->Nat)->Nat->Nat
+        doubleFun = double〈Nat->Nat〉
+        id: ∀X. X->X
+        id = ΛX. λx:X. x
+
+    a) Probar que los términos están bien tipados
+
+    - double
+                       f:(X->X) \in J        x:X \in J
+                       ______________(T-Var) _________(T-Var)
+f:(X->X) \in J         J |- f:(X->X)         J |- x:X
+______________(T-Var)  ______________________________(T-App)
+J |- f:(X->X)          J |- (f x):X
+___________________________________(T-App)
+J=H,x:X |- f (f x) : X
+______________________________________(T-Abs)
+H={},X,f:X->X |-  λx:X. f (f x) : X->X
+_____________________________________________(T-Abs)
+{},X |- λf:X->X. λx:X. f (f x) : (X->X)->X->X
+_________________________________________________(T-TAbs)
+(ΛX. λf:X->X. λx:X. f (f x)) : (∀X. (X->X)->X->X)
+
+    - doubleNat
+
+double〈Nat〉= (∀X. (X->X)->X->X)〈Nat〉
+
+(∀X. (X->X)->X->X)〈Nat〉: (X->X)->X->X[Nat] =b
+                          (Nat->Nat)->Nat->Nat
+
+    - doubleFun - análogo
+
+    b) Usando double definir una función quadruple que aplique una función argumento cuatro veces
+
+quadruple: ∀X. (X->X)->X->X
+quadruple = ΛX. \f:(X->X). \x:X. (double〈X〉 (double〈X〉 f)) x
+
+___________________________________________________________________________________________________________________________________________
+- E11: Definir la conjunción de booleanos representados como Bool = ∀X. X->X->X .
+
+Recordemos que:
+    True = ΛX. \x1:X. \x2:X x1
+    False = ΛX. \x1:X. \x2:X x2
+
+and: \b1:Bool. \b2:Bool. b1〈Bool〉 (b2〈Bool〉True False) False
+
+___________________________________________________________________________________________________________________________________________
+- E12: Mostrar que el tipo PairNat = ∀X. (Nat → Nat → X) → X puede ser usado para representar pares de números. Para esto escribir funciones:
+    a) pairNat: Nat → Nat → PairNat
+    
+Recordemos que en \-calc, pair se define como:
+pair = \xy. \b. b x y
+
+En \-calc tipado:
+
+pairNat = \n:Nat. \m:Nat. (ΛX. \b:X. b x y)
+
+    b) fstNat: PairNat -> Nat
+    
+fstNat = \p:PairNat. p〈Nat〉 (\n:Nat. \m:Nat. n)
+
+    c) sndNat: PairNat -> Nat
+
+sndNat = \p:PairNat. p〈Nat〉 (\n:Nat. \m:Nat. m)
+
+___________________________________________________________________________________________________________________________________________
+- E13: Definir la función predecesor de los naturals representados como Nat = ∀X. (X → X) → X → X. Ayuda: Usar el tipo PairNat para implementar tupling.
+
+pred 0 = 0
+pred (suc n) = n
+
+pred: Nat->Nat
+
+pred = \n:Nat. fstNat (n〈Nat〉 (\p:PairNat: (sndNat p) (suc (sndNat p))) (pairNat 0 0))
+
+___________________________________________________________________________________________________________________________________________
+- E14: Dada la representación de listas: List X = ∀Y . (X → Y → Y) → Y → Y
+
+    a) Definir y dar el tipo de las sobre listas: map, append y reverse.
+
+Veamos su def:
+map Nil f b = Nil
+map (cons x xs) f b = cons (f x) (map xs f b)
+
+map:  ∀XY.(X->Y) -> List X -> List Y
+
+map = ΛXY. \f:X->Y. \l:List X. (l〈List Y〉 (\x:X. \xs:List Y. cons〈Y〉 (f x) xs) Nil)
+
+    b) Definir la función sum: List Nat → Nat, que suma los elementos de una lista de naturales.
+
+    c) **Definir una función insert: ∀X . (X → X → Bool) → List X → X → List X que dada una función de comparación y una lista ordenada, inserta un elemento.

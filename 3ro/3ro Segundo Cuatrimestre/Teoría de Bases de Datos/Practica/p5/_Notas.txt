@@ -1,0 +1,55 @@
+Consideramos buenas abstracciones aquellas que:
+    - Tienen una definición precisa.
+    - Tienen un fundamento teórico con resultados y/o propiedades sobre la abstracción.
+    - Son generales, son úutiles en diversas situaciones.
+
+___________________________________________________________________________________________________________________________________________
+    -- Functores: 
+        - Motivación: En no todas las estructuras de datos es posible hacer map. (En las listas sí, en BTrees también, pero no en data Func a = Func (a->a))
+                Los functores se definen como todas las estructuras donde exista una función fmap (que cumple con características básicas)
+
+Llamamos functor a los constructores de tipos que poseen una función fmap:
+
+class Functor f where
+    fmap :: (a -> b) -> f a -> f b
+
+Que satisface:
+
+(Functor.1) fmap id = id
+(Functor.2) fmap f . fmap g = fmap (f.g)
+
+___________________________________________________________________________________________________________________________________________
+    -- Functores Aplicativos:
+        - Motivación: Si quisieramos poder generalizar fmap para que tome tantos argumentos como queramos (fmap2: (a->b->c) -> f a -> f b -> f c)
+            Esto se puede hacer con currificación de funciones.
+
+Llamamos functores aplicativos a los contructores de tipos que poseen una función pure y <*>:
+
+class Functor f = > Applicative f where
+    pure :: a -> f a
+    <*> :: f ( a -> b ) -> f a -> f b
+
+Que satisface:
+
+(Applicative.1) pure id <*> x = x
+(Applicative.2) pure (.) <*> u <*> v <*> w = u <*> (v <*> w)
+(Applicative.3) pure f <*> pure x = pure (f x)
+(Applicative.4) u <*> pure y = pure (\g -> g y) <*> u
+
+___________________________________________________________________________________________________________________________________________
+    -- Monadas:
+        - Motivación: Existen las funciones puras e impuras:
+                        - Puras: El resultado depende únicamente de sus argumentos, y no genera efectos secundarios.
+                        - Impuras: El resultado puede depender del entorno, y pueden afectar al entorno.
+
+Se implementan con la clase:
+
+class Applicative m = > Monad m where
+    return :: a -> m a
+    (>>=) :: m a -> (a -> m b) -> m b
+
+Que satisface:
+
+(monad.1) return a >>= k         = k a
+(monad.2) m >>= return           = m
+(monad.3) m >>=(\x -> k x >>= h) = (m >>= k) >>= h

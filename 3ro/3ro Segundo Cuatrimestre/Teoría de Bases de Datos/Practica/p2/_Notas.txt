@@ -1,0 +1,134 @@
+- Big-step:
+⇓ ⊆ T x V
+
+    t⇓v: "evalua a v"
+
+___ (B-Val)
+v⇓v
+
+t1⇓T             t2⇓v
+_________________________ (B-IfTrue)
+if t1 then t2 else t3 ⇓ v
+
+t1⇓F             t3⇓v
+_________________________ (B-IfFalse)
+if t1 then t2 else t3 ⇓ v
+
+
+____________________________________________________________________________________________________________________
+- Small-step:
+-> ⊆ T x T
+
+    -> es una relacion entre estados, 
+
+_________________________ (E-IfTrue)
+if T then t2 else t3 → t2
+
+_________________________ (E-IfFalse)
+if F then t2 else t3 → t3 
+
+t1 → t1'
+______________________________________________ (E-If)
+if t1 then t2 else t3 → if t1' then t2 else t3
+
+Si  v ::= T | F | nv
+    nv ::= 0 | succ nv
+
+t -> t'
+_________________ (E-Succ)
+succ t -> succ t'
+
+pred 0 -> 0 (E-PredZero)
+
+pred (succ nv) -> nv (E-PredSucc)
+
+t -> t'
+_________________ (E-Succ)
+pred t -> pred t'
+
+iszero 0 -> T (E-IsZeroZero)
+
+iszero (succ nv) -> F (E-IsZeroSucc)
+
+t -> t'
+_________________ (E-IsZero)
+iszero t -> iszero t'
+
+
+____________________________________________________________________________________________________________________
+- Forma normal:
+Un termino t esta en forma normal si no se le puede aplicar ninguna regla de evaluacion. Es decir, si no existe t'/ t->t'
+
+Teorema: Todo valor esta en forma normal.
+
+El reverso no vale, porque pueden por ejemplo haber terminos con errores de ejecucion que estan en forma normal.
+Por ejemplo, succ T es una forma normal, pero no un valor. A estos se los llaman terminos atascados
+
+____________________________________________________________________________________________________________________
+- Pasos multiples:
+->* ⊆ T x T
+
+    Es la clausura reflexivo transitiva de ->
+
+Teorema (Equivalencia de paso grande y chico)
+Para todo termino t y valor v, t⇓v sii t->*v.w
+
+t -> t'
+_______
+t ->* t'
+
+_______
+t ->* t
+
+t ->* t' t' ->* t''
+___________________
+t ->* t''
+
+
+
+ -- PARTE 2 -- Semantica de lenguajes imperativos
+____________________________________________________________________________________________________________________
+Si tenemos
+intexp ::=  nv
+            | var
+            | −u intexp
+            | intexp + intexp
+            | intexp −b intexp
+            | intexp × intexp
+            | intexp ÷ intexp
+
+Los expresiones booleanas son:
+boolexp ::= true | false
+            | intexp = intexp
+            | intexp < intexp
+            | intexp > intexp
+            | boolexp && boolexp
+            | boolexp || boolexp
+            | not boolexp
+
+comm ::=    skip
+            | var := intexp
+            | comm; comm
+            | if boolexp then comm else comm
+            | repeat comm boolexp
+
+Aqui, 
+    - Los valores de las expresiones enteras dependen de un estado global (por var), y las booleanas tambien, por contener expresiones enteras. 
+    - Los comandos leen y modifican el estado global. No tienen valores en si mismos, excepto por su efecto sobre el estad
+
+
+Definimos el estado global como Σ (lo llamare S). Una funcion Σ: var -> nv
+Adicionalmente, sumamos la posibilidad de tener E/S:
+L ::= nv? | nv! | τ
+    - nv? es entrada, nv! es salida, τ es una transicion silenciosa, es decir, que no tiene E/S.
+    - Esto se denota agregando -nv!->, -nv?-> y -> (la silenciosa se suele no denotar).
+
+Ahora, tenemos que las evaluaciones son de la forma:
+⇓_int   ⊆ (intexp x Σ)  x L x (nv U {err})
+⇓_bool  ⊆ (boolexp x Σ) x L x (bv U {err})
+->      ⊆ (comm x Σ)    x L x ((comm U {err}) x Σ)
+
+
+
+
+

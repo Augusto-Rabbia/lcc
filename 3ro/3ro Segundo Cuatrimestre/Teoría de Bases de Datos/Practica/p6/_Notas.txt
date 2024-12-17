@@ -1,0 +1,13 @@
+    -- I/O con Mónadas --
+
+Haskell utiliza el sistema de tipos para diferenciar los cómputos puros de los impuros, definiendo el constructor de tipos IO para representar cómputos que realizan E/S:
+type IO a = World -> (a, World)
+
+Operaciones básicas de I/O:
+
+- getChar :: IO Char                    -- Lee un caracter, lo imprime por pantalla y lo devuelve.
+- putChar :: Char -> IO ()              -- Muestra un caracter en la pantalla.
+- putStr :: String -> IO ()
+- putStrLn :: String -> IO ()
+- getLine :: IO String
+- readFile :: FilePath -> IO String     -- Lee el contenido de un archivo y lo devuelve
