@@ -1,0 +1,285 @@
+- E1: encontrar v/ t⇓v
+
+    1.  s = if T then F else T,
+        t = if s then s else F.
+
+T⇓T             F⇓F
+________________________ (B-IfTrue)   ___(B-Val)
+s=if T then F else T ⇓ F              F⇓F
+_________________________________________(B-IfFalse)
+if s then s else F ⇓ F
+
+
+    2.  s = if F then F else F,
+        r = if s then F else T,
+        t = if r then s else s.
+
+___ (B-Val)     ___(B-Val)
+F⇓F             F⇓F
+________________________(B-IfFalse) ___(B-Val)      ___(B-Val)      ___(B-Val)
+s=if F then F else F ⇓ F            T⇓T             F⇓F             F⇓F
+________________________________________(B-IfFalse) ________________________(B-IfFalse)
+r=if s then F else T ⇓ T                            s=if F then F else F ⇓ F
+____________________________________________________________________________(B-IfTrue)
+if r then s else s ⇓ F
+
+
+___________________________________________________________________________________________________________________________________________
+- E2: Mostrar que t->u
+
+    1.  s = if T then F else T,
+        t = if s then F else T,
+        u = if F then F else T.
+
+_______________________(E-IfTrue)
+if T then F else T -> F
+________________________________________(E-If)
+if s then F else T -> if F then F else T
+
+    2.  s = if T then T else T,
+        r = if s then T else T,
+        t = if r then F else F,
+        u = if s then F else F.
+
+_________________________(E-IfTrue)
+s=if T then T else T -> T
+__________________________________________(E-If)
+r=if s then T else T -> s=if T then T else T 
+__________________________________________(E-If)
+if r then F else F -> if s then F else F
+
+
+___________________________________________________________________________________________________________________________________________
+- E3: encontrar u/ t->u
+
+    1.  s = if T then F else T,
+        t = if s then s else F.
+
+_________________________(E-IfTrue)
+s=if T then F else T -> F 
+________________________________________(E-If)
+if s then s else F -> if F then s else F = u
+
+    2.  s = if F then F else F,
+        r = if s then F else T,
+        t = if r then s else s.
+
+_______________________(E-IfFalse)
+if F then F else F -> F
+__________________________________________(E-If)
+r=if s then F else T -> if F then F else T
+___________________________________________________________(E-If)
+if r then s else s -> if (if F then F else T) then s else s
+
+
+___________________________________________________________________________________________________________________________________________
+- E4: Modificar la relacion de evaluacion dada para que al evaluar if t then t' else t'', primero evalue t', luego t'', y finalmente t.
+
+t' -> t2
+______________________________________________(E-Ift')
+if t then t' else t'' -> if t then t2 else t''
+
+t'' -> t2
+___________________________________________(E-Ift'')
+if t then v else v' -> if t then v else t2
+
+para v \in {T,F}
+
+t -> t2
+____________________________________________(E-Ift)
+if t then v else v' -> if t then v else v'
+
+para v, v' \in {T,F}
+
+Luego, definimos E-IfTrue e E-IfFalse solo cuando tenemos 2 valores en el then else. 
+
+
+___________________________________________________________________________________________________________________________________________
+- E5: En B, demostrar que si t -> t' y t -> t'', entonces t' = t''
+D/ Prueba por inducción
+
+    i) CB: 
+ - La última regra utilizada fue E-IfTrue. En este caso, t = if T then r else s
+
+No podría utilizarse en t la regla E-IfFalse o E-If.
+
+_________________________(E-IfTrue)
+t=if T then r else s -> r = t' = t''
+
+
+ - E-IfFalse (análogo)
+
+
+    ii) PI: Supongamos que para toda subtérmino de t, llamémoslo r, vale que r->t' y r->t'' => t'=t''
+Sea t=if r then x else y
+
+No podría utilizarse en t la regla E-IfFalse o E-IfTrue.
+Luego,
+_________________________(E-IfTrue)
+t=if T then r else s -> r
+
+y por HI, r = t' = t''
+
+
+___________________________________________________________________________________________________________________________________________
+- E6: En B, demostrar que si t está en formal normal, entonces t es un valor.
+D/ Por inducción
+
+
+(HI) si t' no es un valor, entonces t' -> t'' para todo t' en t
+
+Sup que t no es un valor. Entonces, t tiene la forma 
+if t1 then t2 else t3
+Ahora, si t1 fuera un valor, entonces
+    - si t1 = T
+        if T then t2 else t3 -> t2
+        Absurdo
+    - si t1 = F
+        if T then t2 else t3 -> t3
+        Absurdo
+
+Por lo tanto, t1 no puede ser un valor, y por (HI) existe t'' tal q, t1 -> t''
+Entonces, t -> if t'' then t2 else t3. Absurdo.
+
+___________________________________________________________________________________________________________________________________________
+- E7: sea => la clausura reflexivo-transitiva de ->
+    a) Probar que si x => y, e y => z, entonces x => z
+D/ inducción sobre x => y
+    i) CB:
+Hay 2 posibilidades
+x -> y
+______
+x => y
+
+Luego, si y => z, tenemos
+
+x -> y x => y
+_____________
+x => z
+
+La otra es
+____
+x=>x
+Es decir, x=y. Entonces, si y=>z, entonces x=>z
+
+    ii) PI: (HI) Si existen subderivaciones de x=>b, a=>b, b=>c, entonces existe la derivación a=>c
+x->w w=>y
+_________
+x=>y
+
+luego, como y=>z, entonces w=>z
+x->w w=>z
+_________
+x=>z
+
+Luego, por i), ii), y el PIM, => es transitiva.
+
+    b) Probar la equivalencia entre esta forma de clausura reflexo-transitiva y la vista en la teor´ıa. Es decir, probar que:
+        t ->* u sii t => u
+D/
+=>)
+Por inducción sobre ->*:
+    i) CB:
+Tenemos que t->*t, y vale t=>t
+Y el otro caso
+t->u
+_____
+t->*u
+y vale
+t->u
+____
+t=>u=
+    ii) (HI) Para toda subderivación de t->*u, llamemoslas a->*b, a->*b implica a=>b
+t->*r r->*u
+___________
+t->*u
+
+Luego, valen t=>r y r=>u por (HI).
+
+Probamos en a) que entonces, t=>u.
+
+<=)
+Por inducción sobre =>)
+    i) CB:
+Y tenemos que 
+t->u
+_____
+t=>u
+y vale
+t->u
+____
+t->*u
+    ii) (HI) Para toda subderivación de t->*u, llamemoslas a->*b, a->*b implica a=>b
+t->r r=>u
+___________
+t=>u
+
+Por HI, vale r->*u, y por la regla vista en CB, t->r implica t->*r. Entonces, t->*u.
+
+
+___________________________________________________________________________________________________________________________________________
+- E8: 
+
+COMPLETAR.
+
+___________________________________________________________________________________________________________________________________________
+- E9: Demostrar:
+    a) Determinismo de ⇓.
+D/ Sean v, v' \in Val/ t⇓v y t⇓v'
+Probemos por inducción que v = v'
+    i) CB:
+Si se llegó a partir de B-Val:
+t \in Val, y 
+___(B-Val)
+t⇓t = v = v'
+
+    ii) PI: (HI) Para cada subderivación en t⇓v, llamémoslo r⇓v, vale r⇓v y r⇓v' implica v=v'
+Si se llegó a partir de B-IfTrue:
+___(B-Val)      ___
+T⇓T             r⇓v
+_________________________(B-IfTrue)
+t=if T then r else s ⇓ v
+
+___(B-Val)      ____
+T⇓T             r⇓v'
+_________________________(B-IfTrue)
+t=if T then r else s ⇓ v'
+
+Ahora, como r⇓v y r⇓v', por (HI) vale v=v'
+
+El caso B-IfFalse es análogo.
+
+    b) Terminación de ⇓: Para todo término t, existe v/ t⇓v
+D/ Por inducción sobre Term
+    i) CB:
+Sea t \in Val:
+___(B-Val)
+t⇓t
+Entonces, existe v=t tal que t⇓v.
+
+    ii) PI: (HI) Para todo subtérmino de t, llamémoslo r, existe v \in Val/ r⇓v.
+Si t tiene la forma t=if r then s else u
+
+Por HI, existe v,v',v'' \in Val/ r⇓v, s⇓v', u⇓v''
+
+Luego, Tenemos 2 posibilidades:
+    - v=T:
+___(HI) ____(HI)
+r⇓T     s⇓v'
+_________________________(B-IfTrue)
+t=if r then s else u ⇓ v'
+
+    - v=F: Análogo, vale t⇓v''
+
+
+___________________________________________________________________________________________________________________________________________
+- E10: 
+
+
+
+___________________________________________________________________________________________________________________________________________
+- E11
+
+Sería incorrecta por el hecho que
+
+

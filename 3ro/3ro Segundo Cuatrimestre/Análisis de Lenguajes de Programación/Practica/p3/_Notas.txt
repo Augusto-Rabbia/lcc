@@ -1,0 +1,64 @@
+    1. Sea X el conjunto finito de identificadores, definimos el conjunto Λ de \-términos:
+x∈X     t∈Λ   u∈Λ     x∈X   t∈Λ
+___     _________     _________
+x∈Λ      (t u)∈Λ      (\x. t)∈Λ
+
+    2. FV y BV
+FV(x) = {x}
+FV(λx. M) = FV(M) − {x}
+FV(M N) = FV(M) ∪ FV(N)
+
+BV(x) = ∅
+BV(λx. M) = BV(M) ∪ {x}
+BV(M N) = BV(M) ∪ BV(N)
+
+    3. ≡ es la relación de identidad sintáctica. M≡N si son exactamente el mismo término.
+
+
+    4. La ≡a expresa que términos que son iguales excepto en el nombre de variables ligadas, son equivalentes.
+y se llama alpha-conversión, y con siste en cambiar λx.y por λy.(M[y/x]), sólo si y no está en M.
+
+Tiene 3 propiedades
+
+    5. ->b es beta reducción, y es la forma en que evaluamos.
+Consiste en reducir términos de la forma
+(λx. P)Q
+a
+P[Q/x]
+
+t1 ->β t1'
+________________(E-App1)
+t1 t2 ->β t1' t2
+
+t2 ->β t2'
+________________(E-App2)
+t1 t2 ->β t1 t2'
+
+t ->β t'
+________________(E-App2)
+λx.t ->β λx.t'
+
+(λx.t1)t2 ->β t1[t2/x] (E-AppAbs)
+
+Generalmente queremos reducir hasta llegar a una forma normal.
+
+Decimos que P y Q son b-equivalentes (P =b Q) si Q puede ser obtenido a partir de P con finitas b-contracciones/expansiones y a-conversiones.
+
+    6. n-contraccion: Es cuando tenemos una función de la forma \x. P ., y es equivalente a P. Decimos (\x. P x) ->n P
+Esta nos hace llegar a la
+    bn-contraccion
+
+Llamamos una forma normal a un término que no tiene una bn contraccion.
+
+    7. Términos Normalizantes:
+- P es fuertemente normalizante si todas sus reducciones son finitas y terminan en una forma normal.
+- P es debilmente normalizante si tiene forma normal.
+
+La tecnica mas usada es normalizar hacia la izquierda siempre, y se llama reducción normal. 
+Por teorema, si la reducción normal de un término P es infinita, P no tiene forma normal.
+
+    8. Ocurrencia (de la práctica):
+P ocurre n Q si (se define inductivamente sobre Q):
+- P ocurre en P
+- Si P ocurre en M o N, entonces P ocurre en (M N)
+- Si P ocurre en M o P ≡ x, entonces P ocurre en (\x. M)

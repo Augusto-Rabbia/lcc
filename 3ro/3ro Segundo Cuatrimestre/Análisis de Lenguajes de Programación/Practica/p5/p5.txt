@@ -1,0 +1,415 @@
+    -- Functores --
+- E1: Demostrar que los siguientes tipos de datos son functores. 
+        Es decir, dar su instancia de la clase Functor correspondiente y probar que se cumplen las leyes de los functores.
+    a) data Pair a = P (a, a)
+instance Functor Pair where
+    fmap f P(x,y) = P(f x, f y)
+
+(functor.1) fmap id = id
+D/
+fmap id P(x,y)  = {def fmap}
+P(id x, id y)   = {def id}
+P(x,y)          = {def id}
+id P(x,y)
+
+(functor.2) fmap f . fmap g = fmap (f.g)
+D/
+(fmap f . fmap g) P(x,y)    = {def composicion}
+fmap f (fmap g (P(x,y)))    = {def fmap}
+fmap f (P(g x, g y))        = {def fmap}
+P(f (g x), f (g y))         = {def composicion}
+P((f.g) x, (f.g) y)         = {def fmap}
+fmap (f.g) P(x,y)
+
+
+    b) data Tree a = Empty | Branch a (Tree a) (Tree a)
+instance Functor Tree where
+    fmap f Empty = Empty
+    fmap f (Branch a t t') = Branch (f a) (fmap f t) (fmap f t') 
+
+(functor.1) fmap id = id
+D/
+    i) CB:
+fmap id Empty = {fmap.1}
+Empty        = {id}
+id Empty
+    ii) PI: (HI) Para todo subtérmino r de (Branch a t t'), vale que fmap id r = id r
+fmap id (Branch a t t')                     = {def fmap.2}
+Branch (id a) (fmap id t) (fmap id t')      = {def id, HI}
+Branch a t t'                               = {def id}
+id (Branch a t t')
+
+
+(functor.2) fmap f . fmap g = fmap (f.g)
+D/
+    i) CB:
+(fmap f . fmap g) Empty = {def composicion}
+fmap f (fmap g Empty)   = {def fmap.1}
+fmap f Empty            = {def fmap.1}
+Empty
+
+Y por otro lado, fmap (f.g) Empty = Empty {def fmap.2}
+
+    ii) PI: 
+
+    c) data GenTree a = Gen a [GenTree a]
+    d) data Cont a = C ((a → Int) → Int)
+
+
+___________________________________________________________________________________________________________________________________________
+- E2: Probar que las siguientes instancias no son correctas (no cumplen las leyes de los functores).
+
+    a) data Func a = Func (a → a)
+        instance Functor Func where
+            fmap g (Func h) = Func id
+
+no vale (functor.1), pues
+
+fmap id (Func h) = Func id != Func h
+    
+    b) data Br b a = B b (a, a)
+        instance Functor (Br b) where
+            fmap f (B x (y, z)) = B x (f z, f y)
+
+no vale (functor.1), pues
+
+fmap id (B x (y, z))    = {def fmap}
+B x (id z, id y)        = {def id}
+B x (z, y) != B x (y, z)
+
+___________________________________________________________________________________________________________________________________________
+    -- Functores aplicativos --
+- E3: Dar la instancia de Applicative para:
+    a) Either e, con e fijo.
+
+pure x = Right x
+
+Left e <*> _ = Left e
+Right f <*> y = Right x y
+
+    b) (→) r , con r fijo.
+
+pure x = \_ -> x
+
+f <*> g = \r -> f r (g r) 
+
+___________________________________________________________________________________________________________________________________________
+- E4: Las funciones liftAx aplican una función a x argumentos contenidos en una estructura. Usando los operadores de la clase Applicative, dar las definiciones de:
+    a) liftA2 :: Applicative f => (a → b → c) → f a → f b → f c
+        Por ejemplo, liftA2 (,) (Just 3) (Just 5) evalúa a Just (3, 5).
+
+liftA2 f a b = pure f <*> a <*> b
+
+    b) liftA5 :: Applicative f => (a → b → c → d → e → k) → f a → f b → f c → f d → f e → f k
+
+liftA5 f a b c d e = pure f <*> a <*> b <*> c <*> d <*> e
+
+___________________________________________________________________________________________________________________________________________
+- E5: Definir una función 
+        sequenceA :: Applicative f => [f a] → f [a]
+      que dada una lista de acciones de tipo f a, siendo f un funtor aplicativo, transforme la lista una acción de tipo f [a].
+
+sequenceA []            = f []
+sequenceA (x:xs)    = pure (:) <*> x <*> (sequenceA xs)
+
+___________________________________________________________________________________________________________________________________________
+    -- Mónadas --
+- E6: Probar que toda mónada es un functor, es decir, proveer una instancia
+        instance Monad m => Functor m where
+            fmap ...
+
+si definimos
+fmap f m = m >>= (return . f)
+
+Demostremos que es un functor:
+(functor.1) fmap id = id
+D/
+fmap id m           = {def fmap}
+m >>= (return . id) = {def id}
+m >>= return        = {monad.1}
+m                   = {def id}
+id m
+
+(functor.2) (fmap f . fmap g) m = fmap (f.g) m
+D/
+(fmap f . fmap g) m                         = {def .}
+fmap f (fmap g m)                           = {def fmap}
+fmap f (m >>= (return . g))                 = {def fmap}
+(m >>= (return . g)) >>= (return . f)       = {monad.3}
+m >>= (\x -> (return.g) x >>= (return.f))   = {aplicacion}
+m >>= (\x -> return (g x) >>= (return.f))   = {monad.1}
+m >>= (\x -> (return.f) (g x))              = {def composicion}
+m >>= (\x -> (return.f.g) x)                = {abstraccion}
+m >>= return.(f.g)                          = {def fmap}
+fmap (f.g) m
+
+___________________________________________________________________________________________________________________________________________
+- E7: Dar instancias de Monad y demostrar para:
+    a) newtype Id a = Id a
+
+instance Id a => Monad a where
+    return x = Id x
+    (Id x) >>= f = f x
+
+(monad.1) return a >>= k = k a
+D/
+return x >>= k  = {def return}
+Id x >>= k      = {def >>=}
+k x
+
+(monad.2) m >>= return = m
+D/
+si m es de tipo Id a, entonces m = Id x para algún x:a.
+Id x >>= return = {def >>=}
+return x        = {def return}
+Id x
+
+(monad.3) m >>= (\x -> k x >>= h) = (m >>= k) >>= h 
+D/
+si m es de tipo Id a, entonces m = Id x para algún x:a.
+(Id x) >>= (\x -> k x >>= h)    = {def >>=}
+(Id x) >>= (\x -> h (k x))      = {def composicion}
+(Id x) >>= (\x -> (h.k) x)      = {def abstraccion}
+(Id x) >>= (h.k)                = {def >>=}
+(h.k) x                         = {def composicion}
+h (k x)                         = {def >>=}
+(k x) >>= h                     = {def >>=}
+((Id x) >>= k) >>= h
+
+    b) data Either e a = Left e | Right a
+
+instance Either e a => Monad a where
+    return x = Right x
+    Right x >>= f = f x
+    Left er >>= f = Left er
+
+(monad.1) return x >>= k = k x
+D/
+return x >>= k  = {def return}
+Right x >>= k   = {def >>=}
+k x
+
+(monad.2) m >>= return = m
+- Caso 1: m = Right x
+(Right x) >>= return    = {def >>=.1}
+return x                = {def return}
+Right x
+
+- Caso 2: m = Left er
+(Left er) >>= return    = {def >>=.2}
+Left er
+
+(monad.3) m >>= (\x. k x >>= h) = (m >>= k) >>= h
+D/
+- Caso 1: m = Right x
+(Right x) >>= (\x. k x >>= h)   = {def >>=.1}
+(\x. k x >>= h) x               = {aplicacion}
+k x >>= h                       = {def >>=.1}
+((Right x) >>= k) >>= h
+
+___________________________________________________________________________________________________________________________________________
+- E8: Demostrar que el constructor de tipo [] es una mónada
+D/
+Tenemos la instancia
+instance [m] => Monad m where
+    return x = [x]
+    xs >>= f = concat (map f xs)
+
+(monad.1) return x >>= k = k x
+D/
+return x >>= k      = {def return}
+[x] >>= k           = {def >>=}
+concat (map k [x])  = {def map}
+concat [k x]        = {def concat} -- Porque k x es una lista (k::a->[a])
+k x
+
+(monad.2) m >>= return = m
+D/
+Por inducción:
+    - CB: m = []
+[] >>= return           = {def >>=}
+concat (map return [])  = {def map}
+concat []               = {def concat}
+[]
+
+    - PI: m = (x:xs), (HI) xs >>= return m = xs
+(x:xs) >>= return                       = {def >>=}
+concat (map return (x:xs))              = {def map}
+concat ((return x): (map return xs))    = {def return}
+concat ([x]:(map return xs))            = {def concat}
+([x] ++ (concat (map return xs)))       = (HI)
+([x] ++ xs)                             = (def ++)
+x:xs
+
+(monad.3) m >>= (\x. k x >>= h) = (m >>= k) >>= h
+D/
+Por inducción:
+    - CB: m = []
+[] >>= (\x. k x >>= h)          = {def >>=}
+concat (map (\x. k x >>= h) []) = {def map}
+concat []                       = {def concat}
+[] 
+
+([] >>= k) >>= h                = {def >>=}
+(concat (map k [])) >>= h       = {def map, concat}
+[] >>= h = 
+[]
+
+
+    - PI: m = (x:xs), (HI) xs >>= (\x. k x >>= h) = (xs >>= k) >>= h
+(x:xs) >>= (\x. k x >>= h)                              = {def >>=}
+concat (map (\x. k x >>= h) (x:xs))                     = {def map}
+concat (((\x. k x >>= h) x) : (map (\x. k x >>= h) xs)) = {aplicacion}
+concat ((k x >>= h) : (map (\x. k x >>= h) xs))         = {def concat}
+(k x >>= h) ++ (concat (map (\x. k x >>= h) xs))        = {def >>=}
+(k x >>= h) ++ (xs >>= (\x. k x >>= h))                 = {HI}
+(k x >>= h) ++ ((xs >>= k) >>= h)
+
+
+Y por otro lado,
+((x:xs) >>= k) >>= h                                     = {def >>=}
+(concat map k (x:xs)) >>= h                              = {def map}
+(concat ((k x) : (map k xs))) >>= h                      = {def concat}
+((k x) ++ (concat (map k xs))) >>= h                     = {def >>=}
+((k x) ++ (xs >>= k)) >>= h                              = {def >>=}
+concat (map h ((k x) ++ (xs >>= k)))                     = {propiedad de map}
+concat ((map h (k x)) ++ (map h (xs >>= k)))             = {propiedad concat}
+(concat ((map h (k x))) ++ (concat (map h (xs >>= k))))  = {def >>=}
+(k x >>= h) ++ ((xs >>= k) >>= h)
+
+___________________________________________________________________________________________________________________________________________
+- E9: Dado el siguiente tipo de datos para representar expresiones matemáticas:
+        data Expr a = Var a | Num Int | Add (Expr a) (Expr a)
+
+    a) Dar instacia de monad para Expr
+
+instance Exprt a => Monad a where
+    return a          = Var a
+    (Var a) >>= f     = f a
+    (Num n) >>= f     = Num n
+    (Add e e') >>= f  = Add (e >>= f) (e' >>= f)
+
+La demostración es fácil, pero no la hago.
+
+    b) Dar el tipo y la definición de la función g de manera que 
+            Add (Var "y") (Var "x") >>= g
+        evalúe a la expresión 
+            Add (Mul (Var 1) (Num 2)) (Var 1)
+
+g :: String -> Expr
+g "y" = (Mul (Var 1) (Num 2))
+g "x" = (Var 1)
+
+    c) Explicar qué representa el operador >>= para este tipo de datos
+
+El operador >>= es un operador que reemplaza variables por sus definiciones en el tipo de datos. Es decir, >>= lleva una clase de "conocimiento del estado" de las variables
+
+___________________________________________________________________________________________________________________________________________
+- E10: Escribir el siguiente fragmento de programa en términos de >>= y return.
+    do  x ← (do z ← y
+                w ← f z
+                return (g w z))
+        y ← h x 3
+        if y then return 7
+             else do z ← h x 2
+                     return (k z)
+
+(y >>=  (\z ->
+            (f z) >>= (\w ->
+                        return (g w z)
+                      )
+        )
+) >>= (\x -> 
+        (h x 3) >>= \y ->
+            if y then return 7 else (h x 2) >>= (\z -> return (k z))
+)
+
+___________________________________________________________________________________________________________________________________________
+- E11: Escribir el siguiente fragmento de programa mon´adico usando notaci´on do.
+        (m >>= λx → h x) >>= λy → f y >>= λz → return (g z)
+
+do x <- m
+   y <- h x
+   z <- f y
+   return (g z)
+
+___________________________________________________________________________________________________________________________________________
+- E12: Escribir las leyes de las mónadas usando la notación do.
+
+(monad.1) return x >>= k = k x
+(do a <- return x
+   k a
+) = k a
+
+(monad.2) m >>= return = m 
+(do a <- m
+    return a
+) = m
+
+(monad.3) m >>= (\x -> k x >>= h) = (m >>= k) >>= h
+(do x <- m
+    a <- k x
+    h a
+) =
+(do a <- (do b <- m
+             k b
+         )
+    h a
+)
+
+___________________________________________________________________________________________________________________________________________
+- E13: La clase Monoid clasifica los tipos que son monoides y está definida de la siguiente manera
+        class Monoid m where
+            mempty :: m
+            mappend :: m → m → m
+
+    Se requiere que las instancias hagan cumplir que mappend sea asociativa, y que mempty sea un elemento neutro de
+    mappend por izquierda y por derecha.
+    a) Probar que String es un monoide.
+    b) Probar que el siguiente constructor de tipos es una mónada, (asumiendo que el par´ametro w es un monoide). newtype Output w a = Out (a, w)
+    c) Dar una instancia diferente de Monad para el mismo tipo. Esto prueba que un mismo tipo de datos puede
+    tener diferentes instancias de mónadas.
+    d) Definir una operación write :: Monoid w ⇒ w → Output w ().
+    e) Usando Output String, modificar el evaluador mon´adico b´asico de la teor´ıa para agregar una traza de cada operación. Por ejemplo:
+        > eval (Div (Con 14) (Con 2))
+        El t´ermino (Con 14) tiene valor 14
+        El t´ermino (Con 2) tiene valor 2
+        El t´ermino (Div (Con 14) (Con 2)) tiene valor 7
+        7
+
+___________________________________________________________________________________________________________________________________________
+    -- Funciones Monádicas Genéricas --
+- E14: Sea M una mónada. Dados los operadores:
+        (>>)  :: M a -> M b -> M b
+        (>>=) :: M a -> (a -> M b) -> M b
+    a) De ser posible, escribir (>>) en función de (>>=).
+m >> m' = m >>= (\_ -> m')
+
+    b) De ser posible, escribir (>>=) en función de (>>).
+No es posible.
+
+___________________________________________________________________________________________________________________________________________
+- E15: Definir las siguientes funciones:
+    a) mapM :: Monad m ⇒ (a → m b) → [a] → m [b],
+        tal que mapM f xs aplique la función monádica f a cada elemento de la lista xs, retornando la lista de resultados encapsulada en la mónada.
+
+mapM _ []       = return []
+mapM f (x:xs)   = do y <- f x
+                     ys <- map f xs
+                     return (y:ys)
+
+    b) foldM :: Monad m ⇒ (a → b → m a) → a → [b] → m a, 
+        análogamente a foldl para listas, pero con su resultado encapsulado en la mónada. Ejemplo:
+            foldM f e1 [x1, x2, x3] = do e2 ← f e1 x1
+                                         e3 ← f e2 x2
+                                         f e3 x3
+
+
+
+
+
+
+
+
+
+
