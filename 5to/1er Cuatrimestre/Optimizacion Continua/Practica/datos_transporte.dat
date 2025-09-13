@@ -1,0 +1,16 @@
+set i := Vigo Algeciras;
+set j := Madrid Barcelona Valencia;
+
+param pA :=
+    Vigo 350
+    Algeciras 700;
+
+param pB :=
+    Madrid 400
+    Barcelona 450
+    Valencia 150;
+
+param pC :
+             Madrid   Barcelona   Valencia :=
+    Vigo       0.06      0.12       0.09
+    Algeciras  0.05      0.15       0.11;
